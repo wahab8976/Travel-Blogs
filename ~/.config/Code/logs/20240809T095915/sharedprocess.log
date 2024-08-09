@@ -1,0 +1,26 @@
+2024-08-09 09:59:23.912 [info] Getting Manifest... ms-vscode.vscode-typescript-next
+2024-08-09 09:59:24.384 [info] Installing extension: ms-vscode.vscode-typescript-next {"productVersion":{"version":"1.91.1","date":"2024-07-09T22:08:12.169Z"},"pinned":false,"isApplicationScoped":false,"profileLocation":{"$mid":1,"external":"vscode-userdata:/root/.vscode/extensions/extensions.json","path":"/root/.vscode/extensions/extensions.json","scheme":"vscode-userdata"},"installOnlyNewlyAddedFromExtensionPack":true}
+2024-08-09 09:59:37.719 [info] Getting Manifest... ms-vscode.vscode-typescript-next
+2024-08-09 09:59:37.734 [info] Extension is already requested to install ms-vscode.vscode-typescript-next vscode-userdata:/root/.vscode/extensions/extensions.json
+2024-08-09 10:01:29.442 [info] Extension signature verification result for ms-vscode.vscode-typescript-next: Success. Executed: true. Duration: 1830ms.
+2024-08-09 10:01:29.883 [info] Extracted extension to file:///root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808: ms-vscode.vscode-typescript-next
+2024-08-09 10:01:29.899 [info] Renamed to /root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808
+2024-08-09 10:01:29.940 [info] Marked extension as uninstalled ms-vscode.vscode-typescript-next-5.6.20240807
+2024-08-09 10:01:29.967 [info] Extension installed successfully: ms-vscode.vscode-typescript-next vscode-userdata:/root/.vscode/extensions/extensions.json
+2024-08-09 10:01:30.009 [error] [uncaught exception in sharedProcess]: Error: ENOENT: no such file or directory, stat '/root/.vscode/extensions/extensions.json.vsctmp': EntryNotFound (FileSystemError): Error: ENOENT: no such file or directory, stat '/root/.vscode/extensions/extensions.json.vsctmp'
+    at h.create (/usr/share/code/resources/app/out/vs/code/node/sharedProcess/sharedProcessMain.js:54:19262)
+    at f (/usr/share/code/resources/app/out/vs/code/node/sharedProcess/sharedProcessMain.js:54:19372)
+    at P.hb (/usr/share/code/resources/app/out/vs/code/node/sharedProcess/sharedProcessMain.js:59:36571)
+    at P.stat (/usr/share/code/resources/app/out/vs/code/node/sharedProcess/sharedProcessMain.js:59:28919)
+    at async s.stat (/usr/share/code/resources/app/out/vs/code/node/sharedProcess/sharedProcessMain.js:59:14907)
+    at async V.vb (/usr/share/code/resources/app/out/vs/code/node/sharedProcess/sharedProcessMain.js:105:119283)
+2024-08-09 10:01:30.023 [info] Getting Manifest... ms-vscode.vscode-typescript-next
+2024-08-09 10:01:30.034 [info] Installing extension: ms-vscode.vscode-typescript-next {"productVersion":{"version":"1.92.1","date":"2024-08-07T20:18:20.553Z"},"pinned":false,"isApplicationScoped":false,"profileLocation":{"$mid":1,"external":"vscode-userdata:/root/.vscode/extensions/extensions.json","path":"/root/.vscode/extensions/extensions.json","scheme":"vscode-userdata"},"installOnlyNewlyAddedFromExtensionPack":true}
+2024-08-09 10:01:30.198 [info] Extension installed successfully: ms-vscode.vscode-typescript-next vscode-userdata:/root/.vscode/extensions/extensions.json
+2024-08-09 10:01:30.250 [error] [uncaught exception in sharedProcess]: Error: ENOENT: no such file or directory, stat '/root/.vscode/extensions/extensions.json.vsctmp': EntryNotFound (FileSystemError): Error: ENOENT: no such file or directory, stat '/root/.vscode/extensions/extensions.json.vsctmp'
+    at h.create (/usr/share/code/resources/app/out/vs/code/node/sharedProcess/sharedProcessMain.js:54:19262)
+    at f (/usr/share/code/resources/app/out/vs/code/node/sharedProcess/sharedProcessMain.js:54:19372)
+    at P.hb (/usr/share/code/resources/app/out/vs/code/node/sharedProcess/sharedProcessMain.js:59:36571)
+    at P.stat (/usr/share/code/resources/app/out/vs/code/node/sharedProcess/sharedProcessMain.js:59:28919)
+    at async s.stat (/usr/share/code/resources/app/out/vs/code/node/sharedProcess/sharedProcessMain.js:59:14907)
+    at async V.vb (/usr/share/code/resources/app/out/vs/code/node/sharedProcess/sharedProcessMain.js:105:119283)

@@ -13,5 +13,6 @@
         ]
     },
     "workbench.preferredHighContrastColorTheme": "GitHub Dark Default",
-    "workbench.iconTheme": "vscode-icons"
+    "workbench.iconTheme": "vscode-icons",
+    "git.enableSmartCommit": true
 }

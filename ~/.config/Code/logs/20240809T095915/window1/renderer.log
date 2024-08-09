@@ -1,0 +1,154 @@
+2024-08-09 09:59:18.244 [info] Started local extension host with pid 5609.
+2024-08-09 09:59:21.996 [info] [perf] Render performance baseline is 65ms
+2024-08-09 09:59:32.706 [info] Started local extension host with pid 5680.
+2024-08-09 09:59:35.540 [info] [perf] Render performance baseline is 89ms
+2024-08-09 10:01:30.025 [error] Unknown error while installing extension ms-vscode.vscode-typescript-next: Unknown: Unknown error while installing extension ms-vscode.vscode-typescript-next
+    at V.installFromGallery (/usr/share/code/resources/app/out/vs/code/node/sharedProcess/sharedProcessMain.js:105:61282)
+2024-08-09 10:18:45.502 [info] Started local extension host with pid 7233.
+2024-08-09 10:18:47.507 [error] No registered selector for ID: ms-vscode.npm-command
+2024-08-09 10:26:31.662 [info] Started local extension host with pid 8189.
+2024-08-09 10:26:33.917 [error] No registered selector for ID: ms-vscode.npm-command
+2024-08-09 10:36:24.034 [info] Started local extension host with pid 10480.
+2024-08-09 10:36:25.889 [error] No registered selector for ID: ms-vscode.npm-command
+2024-08-09 10:37:38.111 [error] <semantic> TypeScript Server Error (5.6.0-dev.20240808)
+Debug Failure. False expression: Token end is child end
+Error: Debug Failure. False expression: Token end is child end
+    at processChildNode (/root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/typescript.js:178048:17)
+    at /root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/typescript.js:177979:9
+    at visitNode2 (/root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/typescript.js:31765:18)
+    at forEachChildInJsxAttribute (/root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/typescript.js:32143:45)
+    at forEachChild (/root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/typescript.js:32286:35)
+    at processNode (/root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/typescript.js:177976:5)
+    at processChildNode (/root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/typescript.js:178055:7)
+    at processChildNodes (/root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/typescript.js:178098:32)
+    at /root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/typescript.js:177992:9
+    at visitNodes (/root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/typescript.js:31770:14)
+    at forEachChildInJsxAttributes (/root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/typescript.js:32140:12)
+    at forEachChild (/root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/typescript.js:32286:35)
+    at processNode (/root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/typescript.js:177976:5)
+    at processChildNode (/root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/typescript.js:178055:7)
+    at /root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/typescript.js:177979:9
+    at visitNode2 (/root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/typescript.js:31765:18)
+    at forEachChildInJsxOpeningOrSelfClosingElement (/root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/typescript.js:32258:97)
+    at forEachChild (/root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/typescript.js:32286:35)
+    at processNode (/root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/typescript.js:177976:5)
+    at processChildNode (/root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/typescript.js:178055:7)
+    at processChildNodes (/root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/typescript.js:178098:32)
+    at /root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/typescript.js:177992:9
+    at visitNodes (/root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/typescript.js:31770:14)
+    at forEachChildInJsxElement (/root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/typescript.js:32132:55)
+    at forEachChild (/root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/typescript.js:32286:35)
+    at processNode (/root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/typescript.js:177976:5)
+    at processChildNode (/root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/typescript.js:178055:7)
+    at processChildNodes (/root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/typescript.js:178098:32)
+    at /root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/typescript.js:177992:9
+    at visitNodes (/root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/typescript.js:31770:14)
+    at forEachChildInJsxFragment (/root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/typescript.js:32135:56)
+    at forEachChild (/root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/typescript.js:32286:35)
+    at processNode (/root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/typescript.js:177976:5)
+    at formatSpanWorker (/root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/typescript.js:177779:5)
+    at /root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/typescript.js:177719:105
+    at getFormattingScanner (/root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/typescript.js:176520:15)
+    at Object.formatNodeGivenIndentation (/root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/typescript.js:177719:10)
+    at getFormattedTextOfNode (/root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/typescript.js:175922:43)
+    at format (/root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/typescript.js:175903:27)
+    at computeNewText (/root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/typescript.js:175904:217)
+    at /root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/typescript.js:175865:25
+    at mapDefined (/root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/typescript.js:2581:22)
+    at /root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/typescript.js:175862:28
+    at mapDefined (/root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/typescript.js:2581:22)
+    at Object.getTextChangesFromChanges (/root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/typescript.js:175856:12)
+    at _ChangeTracker.getChanges (/root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/typescript.js:175753:35)
+    at _ChangeTracker.with (/root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/typescript.js:175235:20)
+    at Object.getCodeActionsToWrapJsxInFragment [as getCodeActions] (/root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/typescript.js:162774:62)
+    at /root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/typescript.js:151933:46
+    at flatMap (/root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/typescript.js:2511:17)
+    at Object.getFixes (/root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/typescript.js:151933:10)
+    at /root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/typescript.js:150213:33
+    at flatMap (/root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/typescript.js:2511:17)
+    at Object.getCodeFixesAtPosition (/root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/typescript.js:150211:12)
+    at IpcIOSession.getCodeFixes (/root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/typescript.js:192047:50)
+    at getCodeFixes (/root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/typescript.js:190112:43)
+    at /root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/typescript.js:192369:15
+    at IpcIOSession.executeWithRequestId (/root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/typescript.js:192358:14)
+    at IpcIOSession.executeCommand (/root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/typescript.js:192367:29)
+    at IpcIOSession.onMessage (/root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/typescript.js:192415:68)
+    at process.<anonymous> (/root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/tsserver.js:525:14)
+    at process.emit (node:events:514:28)
+    at emit (node:internal/child_process:951:14)
+    at process.processTicksAndRejections (node:internal/process/task_queues:83:21): Error: <semantic> TypeScript Server Error (5.6.0-dev.20240808)
+Debug Failure. False expression: Token end is child end
+Error: Debug Failure. False expression: Token end is child end
+    at processChildNode (/root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/typescript.js:178048:17)
+    at /root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/typescript.js:177979:9
+    at visitNode2 (/root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/typescript.js:31765:18)
+    at forEachChildInJsxAttribute (/root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/typescript.js:32143:45)
+    at forEachChild (/root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/typescript.js:32286:35)
+    at processNode (/root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/typescript.js:177976:5)
+    at processChildNode (/root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/typescript.js:178055:7)
+    at processChildNodes (/root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/typescript.js:178098:32)
+    at /root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/typescript.js:177992:9
+    at visitNodes (/root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/typescript.js:31770:14)
+    at forEachChildInJsxAttributes (/root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/typescript.js:32140:12)
+    at forEachChild (/root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/typescript.js:32286:35)
+    at processNode (/root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/typescript.js:177976:5)
+    at processChildNode (/root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/typescript.js:178055:7)
+    at /root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/typescript.js:177979:9
+    at visitNode2 (/root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/typescript.js:31765:18)
+    at forEachChildInJsxOpeningOrSelfClosingElement (/root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/typescript.js:32258:97)
+    at forEachChild (/root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/typescript.js:32286:35)
+    at processNode (/root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/typescript.js:177976:5)
+    at processChildNode (/root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/typescript.js:178055:7)
+    at processChildNodes (/root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/typescript.js:178098:32)
+    at /root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/typescript.js:177992:9
+    at visitNodes (/root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/typescript.js:31770:14)
+    at forEachChildInJsxElement (/root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/typescript.js:32132:55)
+    at forEachChild (/root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/typescript.js:32286:35)
+    at processNode (/root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/typescript.js:177976:5)
+    at processChildNode (/root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/typescript.js:178055:7)
+    at processChildNodes (/root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/typescript.js:178098:32)
+    at /root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/typescript.js:177992:9
+    at visitNodes (/root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/typescript.js:31770:14)
+    at forEachChildInJsxFragment (/root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/typescript.js:32135:56)
+    at forEachChild (/root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/typescript.js:32286:35)
+    at processNode (/root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/typescript.js:177976:5)
+    at formatSpanWorker (/root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/typescript.js:177779:5)
+    at /root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/typescript.js:177719:105
+    at getFormattingScanner (/root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/typescript.js:176520:15)
+    at Object.formatNodeGivenIndentation (/root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/typescript.js:177719:10)
+    at getFormattedTextOfNode (/root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/typescript.js:175922:43)
+    at format (/root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/typescript.js:175903:27)
+    at computeNewText (/root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/typescript.js:175904:217)
+    at /root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/typescript.js:175865:25
+    at mapDefined (/root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/typescript.js:2581:22)
+    at /root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/typescript.js:175862:28
+    at mapDefined (/root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/typescript.js:2581:22)
+    at Object.getTextChangesFromChanges (/root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/typescript.js:175856:12)
+    at _ChangeTracker.getChanges (/root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/typescript.js:175753:35)
+    at _ChangeTracker.with (/root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/typescript.js:175235:20)
+    at Object.getCodeActionsToWrapJsxInFragment [as getCodeActions] (/root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/typescript.js:162774:62)
+    at /root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/typescript.js:151933:46
+    at flatMap (/root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/typescript.js:2511:17)
+    at Object.getFixes (/root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/typescript.js:151933:10)
+    at /root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/typescript.js:150213:33
+    at flatMap (/root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/typescript.js:2511:17)
+    at Object.getCodeFixesAtPosition (/root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/typescript.js:150211:12)
+    at IpcIOSession.getCodeFixes (/root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/typescript.js:192047:50)
+    at getCodeFixes (/root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/typescript.js:190112:43)
+    at /root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/typescript.js:192369:15
+    at IpcIOSession.executeWithRequestId (/root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/typescript.js:192358:14)
+    at IpcIOSession.executeCommand (/root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/typescript.js:192367:29)
+    at IpcIOSession.onMessage (/root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/typescript.js:192415:68)
+    at process.<anonymous> (/root/.vscode/extensions/ms-vscode.vscode-typescript-next-5.6.20240808/node_modules/typescript/lib/tsserver.js:525:14)
+    at process.emit (node:events:514:28)
+    at emit (node:internal/child_process:951:14)
+    at process.processTicksAndRejections (node:internal/process/task_queues:83:21)
+	at n.create (/usr/share/code/resources/app/extensions/typescript-language-features/dist/extension.js:1:474351)
+	at v.dispatchResponse (/usr/share/code/resources/app/extensions/typescript-language-features/dist/extension.js:1:468321)
+	at v.dispatchMessage (/usr/share/code/resources/app/extensions/typescript-language-features/dist/extension.js:1:467165)
+	at ChildProcess.<anonymous> (/usr/share/code/resources/app/extensions/typescript-language-features/dist/extension.js:1:466658)
+	at ChildProcess.emit (node:events:514:28)
+	at emit (node:internal/child_process:951:14)
+	at process.processTicksAndRejections (node:internal/process/task_queues:83:21)
+2024-08-09 10:51:28.479 [info] Started local extension host with pid 20926.
+2024-08-09 10:51:30.417 [error] No registered selector for ID: ms-vscode.npm-command
