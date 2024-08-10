@@ -2,3 +2,25 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Base styles for the input */
+.search-input {
+  border: 1px solid #ddd;
+  padding: 0.5rem;
+  border-radius: 8px;
+  outline: none;
+  background-color: white;
+  transition: backdrop-filter 0.3s ease, background-color 0.3s ease,
+    opacity 0.3s ease;
+}
+
+/* Styles when the search bar is active */
+.search-input.active {
+  backdrop-filter: blur(4px); /* Apply blur effect */
+  background-color: rgba(255, 255, 255, 0.6); /* Semi-transparent background */
+  opacity: 0.7; /* Slightly reduce opacity */
+}
+
+/* Optional: Adding placeholder color */
+.search-input::placeholder {
+  color: #aaa;
+}
