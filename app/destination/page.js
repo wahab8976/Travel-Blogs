@@ -40,7 +40,9 @@ const page = () => {
 
         {/* Sorting Algorithm is still pending */}
         {/* Destination Cards */}
-        <div className="mt-20 flex flex-wrap justify-center px-10 gap-5">
+        <div className="mt-20 flex flex-wrap justify-center px-10 bg-red-500 h-auto gap-5">
+          <DestinationPageCard />
+          <DestinationPageCard />
           <DestinationPageCard />
           <DestinationPageCard />
           <DestinationPageCard />
