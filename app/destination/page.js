@@ -48,6 +48,7 @@ const page = () => {
           <DestinationPageCard />
           <DestinationPageCard />
         </div>
+        
       </div>
     </div>
   );

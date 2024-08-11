@@ -4,7 +4,7 @@ const PostCard = () => {
   return (
     <div
       id="MainPagePostCard"
-      className="mb-3 w-[370px] h-[450px] rounded-t-2xl flex flex-col"
+      className="mb-3 w-[360px] md:w-[45vw] md:[h-70vh] h-[450px] rounded-t-2xl flex flex-col"
     >
       <div className="relative w-[100%] h-[350px] rounded-2xl overflow-hidden">
         <img
