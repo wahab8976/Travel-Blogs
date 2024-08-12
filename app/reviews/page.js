@@ -1,3 +1,4 @@
+"use client";
 import ReviewCard from "@/components/ReviewCard";
 import React from "react";
 
@@ -5,13 +6,13 @@ const page = () => {
   return (
     <div>
       <div>
-        <div className="flex flex-col items-center text-center justify-center pt-28">
+        <div className="flex bg-gradient-to-b from-blue-400 to-white h-screen flex-col items-center text-center justify-center pt-28">
           <span className="text-4xl font-semibold space-y-1">
             <h1>Share your Travel Experience</h1>
             <h1>In the form of Story</h1>
           </span>
 
-          <span className="relative w-1/2 mt-14 ml-20">
+          <span className="flex justify-center relative w-1/2 mt-14 ml-20">
             <input
               className="w-full p-3 rounded-full pl-10 pr-12 border border-gray-500 placeholder-gray-400 focus:border-blue-700 focus:outline-none"
               type="text"
@@ -26,7 +27,7 @@ const page = () => {
         </div>
       </div>
 
-      <div className="flex justify-between px-3 pt-10">
+      <div className="flex justify-between px-3 mb-10 pt-10">
         <div className="flex flex-col">
           <h2 className="text-2xl font-semibold">Top Places with reviews</h2>
           <span className="text-sm">
@@ -39,7 +40,11 @@ const page = () => {
         </button>
       </div>
 
-      <div>
+      <div className="flex flex-col items-center ">
+        <ReviewCard />
+        <ReviewCard />
+        <ReviewCard />
+        <ReviewCard />
         <ReviewCard />
       </div>
     </div>

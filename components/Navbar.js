@@ -4,6 +4,7 @@ import Link from "next/link";
 
 const Navbar = () => {
   const [showSearchBar, setShowSearchBar] = useState(false);
+  const [blackNavText, setBlackNavText] = useState(false);
 
   const handleShowSearchBar = () => {
     setShowSearchBar((prevState) => !prevState);
@@ -11,7 +12,11 @@ const Navbar = () => {
 
   return (
     <nav>
-      <div className="absolute w-full flex font-semibold text-white py-2 items-center justify-around bg-transparent z-40">
+      <div
+        className={`${
+          blackNavText ? "text-black" : "text-white"
+        } absolute w-full flex font-semibold py-2 items-center justify-around bg-transparent z-40`}
+      >
         <h1>
           <Link href="/">Logo Here</Link>
         </h1>
