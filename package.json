@@ -15,6 +15,7 @@
     "@mui/styled-engine-sc": "^6.0.0-alpha.18",
     "@nextui-org/checkbox": "^2.1.4",
     "@nextui-org/react": "^2.4.6",
+    "@tailwindcss/typography": "^0.5.14",
     "flowbite": "^2.5.1",
     "framer-motion": "^11.3.27",
     "next": "14.2.5",

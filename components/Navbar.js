@@ -5,7 +5,7 @@ import Link from "next/link";
 const Navbar = () => {
   const [showSearchBar, setShowSearchBar] = useState(false);
   const [blackNavText, setBlackNavText] = useState(false);
-
+  
   const handleShowSearchBar = () => {
     setShowSearchBar((prevState) => !prevState);
   };
@@ -15,12 +15,12 @@ const Navbar = () => {
       <div
         className={`${
           blackNavText ? "text-black" : "text-white"
-        } absolute w-full flex font-semibold py-2 items-center justify-around bg-transparent z-40`}
+        } absolute w-full flex font-semibold py-2 items-center justify-around bg-transparent z-40 `}
       >
         <h1>
           <Link href="/">Logo Here</Link>
         </h1>
-        <ul className="flex gap-8">
+        <ul className="gap-8  md:flex hidden">
           <li className="hover:cursor-pointer">
             <Link href="/destination">Destination</Link>
           </li>
@@ -38,13 +38,14 @@ const Navbar = () => {
             width={20}
             src="/searchIcon.svg"
             alt="Search"
-            className="cursor-pointer"
+            className="cursor-pointer "
           />
           <div
             className={`flex items-center transition-all duration-300 ease-in-out ${
               showSearchBar ? "w-40 opacity-100" : "w-0 opacity-0"
             }`}
           >
+            {/* Global Search Button Embedded in Navbar  */}
             <input
               className={`search-input text-gray-500 font-normal px-2 w-full rounded-2xl py-1 transition-opacity duration-300 ease-in-out ${
                 showSearchBar ? "active" : ""
@@ -53,9 +54,19 @@ const Navbar = () => {
               placeholder="Discover..."
             />
           </div>
-          <button className="text-black bg-white rounded-3xl px-5 py-2">
+          <button className="text-black bg-white rounded-3xl px-5 py-2 md:block hidden">
             <Link href="/login">Login</Link>
           </button>
+          {/* Menu Button to stimulate Side Bar  */}
+          <div>
+            <img
+              width={30}
+              height={40}
+              className="md:hidden hover:cursor-pointer"
+              src="/menu.png"
+              alt=""
+            />
+          </div>
         </div>
       </div>
     </nav>

@@ -33,9 +33,9 @@ const SignupPage = () => {
   };
 
   return (
-    <div className="flex justify-center items-center h-screen">
+    <div className="flex md:flex-row flex-col justify-center w-full items-center h-screen">
       {/* Left side of the screen with background color */}
-      <div className="h-full bg-green-600 w-1/2">
+      <div className="h-full md:block hidden bg-green-600 w-1/2">
         <img
           className="w-full h-full object-cover"
           src="/signUpBG.jpg"
@@ -44,7 +44,7 @@ const SignupPage = () => {
       </div>
 
       {/* Right side with the form */}
-      <div className="h-full w-1/2 flex justify-center flex-col items-center">
+      <div className="h-full md:w-1/2 w-[95%] pt-14 flex justify-center flex-col items-center">
         {/* Conditionally rendering Sign Up component  */}
         {step === "signUp" ? (
           <div className="flex flex-col items-center">

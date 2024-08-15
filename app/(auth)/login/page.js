@@ -27,9 +27,9 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="flex h-screen bg-white">
+    <div className="flex h-screen bg-white  ">
       {/* Left side of the screen with background image */}
-      <div className="hidden lg:block lg:w-1/2">
+      <div className="hidden  lg:block lg:w-1/2">
         <img
           className="w-full h-full object-cover"
           src="/logInBG.jpg"
@@ -38,7 +38,7 @@ const LoginPage = () => {
       </div>
 
       {/* Right side with the form */}
-      <div className="flex flex-col justify-center items-center w-full lg:w-1/2 px-6 sm:px-12 lg:px-24">
+      <div className="flex pt-10 flex-col justify-center items-center w-full lg:w-1/2 px-6 sm:px-12 lg:px-24">
         {steps === "logIn" ? (
           <div className="w-full max-w-sm space-y-8">
             <div className="text-center">
@@ -50,7 +50,6 @@ const LoginPage = () => {
             <div className="flex justify-center">
               <GoogleLoginBtn />
             </div>
-            
 
             {/* Login form */}
             <form className="space-y-6">
@@ -88,14 +87,14 @@ const LoginPage = () => {
               <div className="flex w-full justify-between text-xs">
                 {/* Checkbox for Remember Me or Forgot Password */}
 
-                <div class="flex items-center space-x-2">
+                <div className="flex items-center space-x-2">
                   <input
                     type="checkbox"
                     id="remember"
                     name="remember"
-                    class="w-5 h-5 border-2 border-blue-500 rounded appearance-none checked:bg-blue-500 checked:border-blue-500 checked:before:content-['✔'] checked:before:absolute checked:before:left-1 checked:before:top-0.5 checked:before:text-white checked:before:text-lg cursor-pointer"
+                    className="w-5 h-5 border-2 border-blue-500 rounded appearance-none checked:bg-blue-500 checked:border-blue-500 checked:before:content-['✔'] checked:before:absolute checked:before:left-1 checked:before:top-0.5 checked:before:text-white checked:before:text-lg cursor-pointer"
                   ></input>
-                  <label for="remember" class="text-gray-700">
+                  <label htmlFor="remember" className="text-gray-700">
                     Remember me
                   </label>
                 </div>

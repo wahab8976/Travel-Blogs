@@ -5,15 +5,17 @@ const page = () => {
   return (
     <div>
       {/* Background Image Section */}
-      <div className="relative w-full h-[90vh]">
+      <div className="relative w-full h-[90vh] overflow-hidden">
         <img
           className="w-full h-full object-cover"
           src="/globe.jpg"
           alt="Background"
         />
         <div className="absolute inset-0 flex items-center justify-center text-white text-center p-4">
-          <div>
-            <h1 className="text-[20vw] font-semibold ">Crotia</h1>
+          <div className="">
+            <h1 className="md:text-[20vw] text-[70px] font-semibold px-10">
+              Crotia
+            </h1>
           </div>
         </div>
       </div>
@@ -22,7 +24,7 @@ const page = () => {
       <div className="flex flex-col mt-10 items-center">
         <h2 className="text-6xl text-blue-600 font-bold font-sans">Crotia</h2>
         <h3 className="text-xl py-2 text-gray-500">Europe</h3>
-        <article className="text-center mt-5 px-32 h-auto">
+        <article className="text-center mt-5 md:px-32 px- h-auto">
           Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolore
           dolorum, nostrum provident saepe minima quod natus quae modi
           recusandae veritatis. Cum dolores dolorum nostrum expedita impedit aut
