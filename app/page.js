@@ -1,6 +1,6 @@
 import React from "react";
-import Navbar from "@/components/Navbar";
 import PostCard from "@/components/PostCard";
+
 
 export default function Home() {
   const carouselItems = [

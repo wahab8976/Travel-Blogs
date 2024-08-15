@@ -1,5 +1,6 @@
 "use client";
 import ReviewCard from "@/components/ReviewCard";
+import WriteReview from "@/components/WriteReview";
 import React from "react";
 
 const page = () => {
@@ -27,6 +28,11 @@ const page = () => {
         </div>
       </div>
 
+      
+      <div>
+        <WriteReview />
+      </div>
+
       <div className="flex justify-between px-3 mb-10 pt-10">
         <div className="flex flex-col">
           <h2 className="text-2xl font-semibold">Top Places with reviews</h2>
@@ -34,6 +40,8 @@ const page = () => {
             Travelers want to see more reviews of these Places
           </span>
         </div>
+
+      
 
         <button className="flex items-center justify-center gap-1 rounded-full text-blue-500 bg-transparent  px-5 border-blue-500 border-2">
           <img src="/pencil.png" alt="" /> <span>Write New Review </span>
