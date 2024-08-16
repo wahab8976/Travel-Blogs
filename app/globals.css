@@ -24,3 +24,44 @@
 .search-input::placeholder {
   color: #aaa;
 }
+
+.carousel-wrapper {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.carousel-slide {
+  flex: 0 0 100%;
+  background-size: cover;
+  background-position: center;
+  height: 80vh;
+  position: relative;
+}
+
+.carousel-content {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  color: white;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+}
+
+.dot {
+  width: 10px; /* Capsule width */
+  height: 5px; /* Capsule height */
+  background-color: white;
+  border-radius: 5px; /* Half of the height for rounded ends */
+  cursor: pointer;
+  transition: background-color 0.3s, width 0.3s; /* Add transition for width change */
+}
+
+.dot.active {
+  width: 30px; /* Increased width when active */
+  /* Change background color when active */
+}

@@ -1,8 +1,47 @@
-import React from "react";
+// Home.js
+"use client";
+import React, { useState, useEffect } from "react";
+import MainPageSection from "@/components/MainPageSection";
+import ClientCarousel from "@/components/ClientMainCarousel";
 import PostCard from "@/components/PostCard";
 
+const Home = () => {
+  const [sectionData, setSectionData] = useState([]);
 
-export default function Home() {
+  useEffect(() => {
+    // Simulate data fetching with sample data
+    const fetchSectionData = async () => {
+      try {
+        // Simulate fetching data with a timeout
+        const data = [
+          {
+            bg: "/bg1.jpg", // URL to background image
+            city: "City One",
+            country: "Country One",
+          },
+          {
+            bg: "/bg2.jpg",
+            city: "City Two",
+            country: "Country Two",
+          },
+          {
+            bg: "/bg3.jpg",
+            city: "City Three",
+            country: "Country Three",
+          },
+        ];
+
+        // Simulate network delay
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+        setSectionData(data);
+      } catch (error) {
+        console.error("Failed to fetch section data", error);
+      }
+    };
+
+    fetchSectionData();
+  }, []); // Empty dependency array means this runs once on mount
+
   const carouselItems = [
     {
       src: "https://img.daisyui.com/images/stock/photo-1559703248-dcaaec9fab78.webp",
@@ -33,66 +72,38 @@ export default function Home() {
       country: "Armenia",
     },
   ];
-
   return (
     <main className="min-h-screen flex flex-col">
       <div className="flex flex-grow flex-col">
-        <div className="flex flex-grow justify-center relative z-10">
-          <section className="w-1/3 h-[90vh] flex items-end relative overflow-hidden">
-            <img
-              src="/bg1.jpg"
-              alt="Background Image"
-              className="absolute inset-0 object-cover w-full h-full"
+        {/* Render sections as a carousel on smaller screens */}
+        <div className="md:hidden w-full h-[80vh]">
+          <ClientCarousel sections={sectionData} />
+        </div>
+
+        {/* Render sections in a grid on larger screens */}
+        <div className="hidden md:flex flex-wrap">
+          {sectionData.map((item, index) => (
+            <MainPageSection
+              key={index}
+              bgImage={item.bg}
+              city={item.city}
+              country={item.country}
             />
-            <div className="relative z-10 p-5 text-white">
-              <h2>Why you should</h2>
-              <h2>reconsider The</h2>
-              <span className="flex items-center">
-                <h2>Inca Trail, Peru Trip</h2>
-                <img className="ml-2" src="/Arrow.png" alt="NextIcon" />
-              </span>
-            </div>
-          </section>
-          <section className="w-1/3 h-[90vh] flex items-end relative overflow-hidden">
-            <img
-              src="/bg2.jpg"
-              alt="Background Image"
-              className="absolute inset-0 object-cover w-full h-full"
-            />
-            <div className="relative z-10 p-5 text-white">
-              <h2>Why you should</h2>
-              <h2>reconsider The</h2>
-              <span className="flex items-center">
-                <h2>Inca Trail, Peru Trip</h2>
-                <img className="ml-2" src="/Arrow.png" alt="NextIcon" />
-              </span>
-            </div>
-          </section>
-          <section className="w-1/3 h-[90vh] flex items-end relative overflow-hidden">
-            <img
-              src="/bg3.jpg"
-              alt="Background Image"
-              className="absolute inset-0 object-cover w-full h-full"
-            />
-            <div className="relative z-10 p-5 text-white">
-              <h2>Why you should</h2>
-              <h2>reconsider The</h2>
-              <span className="flex items-center">
-                <h2>Inca Trail, Peru Trip</h2>
-                <img className="ml-2" src="/Arrow.png" alt="NextIcon" />
-              </span>
-            </div>
-          </section>
+          ))}
         </div>
       </div>
-      <span className="absolute font-bold inset-0 flex items-center justify-center z-20 text-center text-white text-4xl pointer-events-none">
+      {/* Additional content */}
+      <div className="flex justify-center items-center mt-10">
+        <h1 className="text-4xl font-bold">Explore Amazing Destinations</h1>
+      </div>
+      <span className="absolute top-[-80px] font-bold inset-0 flex items-center justify-center z-20 text-center text-white md:text-4xl text-2xl pointer-events-none">
         <div>
           <h1>Discover New Places and Create</h1>
           <h1>Unforgettable Memories</h1>
         </div>
       </span>
       <div className="pt-5">
-        <h3 className="px-3 text-xl font-bold">Plan your best trip ever</h3>
+        <h3 className="px-3 text-xl font-bold">Plan Your Best Trip Ever</h3>
         <span className="flex items-center mx-3 justify-between">
           <p>Making the most of your travel experience in 2023</p>
           <button className="items-center rounded-3xl text-blue-500 bg-transparent py-1 px-3 border-blue-500 border-2">
@@ -158,6 +169,6 @@ export default function Home() {
       </div>
     </main>
   );
-}
+};
 
-
+export default Home;
