@@ -1,74 +1,109 @@
+"use client";
+import React, { useRef, useState, useEffect } from "react";
+import MainPageSection from "@/components/MainPageSection";
+import ClientCarousel from "@/components/ClientMainCarousel";
 import PostCard from "@/components/PostCard";
-import React from "react";
+import CarouselButton from "@/components/CarouselButton";
 
-const page = () => {
+const Home = () => {
+  const [sectionData, setSectionData] = useState([]);
+  const carouselRef = useRef(null);
+  const topLocationsCarouselRef = useRef(null); // Ref for the second carousel
+
+  useEffect(() => {
+    // Simulate data fetching with sample data
+    const fetchSectionData = async () => {
+      try {
+        const data = [
+          { bg: "/bg4.jpg", city: "City One", country: "Country One" },
+          { bg: "/bg5.jpg", city: "City Two", country: "Country Two" },
+          { bg: "/bg6.jpg", city: "City Three", country: "Country Three" },
+        ];
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+        setSectionData(data);
+      } catch (error) {
+        console.error("Failed to fetch section data", error);
+      }
+    };
+    fetchSectionData();
+  }, []);
+
+  const carouselItems = [
+    {
+      src: "https://img.daisyui.com/images/stock/photo-1559703248-dcaaec9fab78.webp",
+      country: "Croatia",
+    },
+    {
+      src: "https://img.daisyui.com/images/stock/photo-1565098772267-60af42b81ef2.webp",
+      country: "England",
+    },
+    {
+      src: "https://img.daisyui.com/images/stock/photo-1572635148818-ef6fd45eb394.webp",
+      country: "United States",
+    },
+    {
+      src: "https://img.daisyui.com/images/stock/photo-1494253109108-2e30c049369b.webp",
+      country: "Pakistan",
+    },
+    {
+      src: "https://img.daisyui.com/images/stock/photo-1550258987-190a2d41a8ba.webp",
+      country: "India",
+    },
+    {
+      src: "https://img.daisyui.com/images/stock/photo-1559181567-c3190ca9959b.webp",
+      country: "Germany",
+    },
+    {
+      src: "https://img.daisyui.com/images/stock/photo-1601004890684-d8cbf643f5f2.webp",
+      country: "Armenia",
+    },
+  ];
+
   return (
-    <div>
+    <main className="min-h-screen flex flex-col">
       <div className="flex flex-grow flex-col">
-        <div className="flex flex-grow justify-center relative z-10">
-          <section className="w-1/3 h-[90vh] flex items-end relative overflow-hidden">
-            <img
-              src="/bg4.jpg"
-              alt="Background Image"
-              className="absolute inset-0 object-cover w-full h-full"
+        {/* Carousel for smaller screens */}
+        <div className="md:hidden w-full h-[80vh]">
+          <ClientCarousel sections={sectionData} />
+        </div>
+
+        {/* Grid for larger screens */}
+        <div className="hidden md:flex flex-wrap w-full h-[90vh]">
+          {sectionData.map((item, index) => (
+            <MainPageSection
+              key={index}
+              bgImage={item.bg}
+              city={item.city}
+              country={item.country}
             />
-            <div className="relative z-10 p-5 text-white">
-              <h2>Why you should</h2>
-              <h2>reconsider The</h2>
-              <span className="flex items-center">
-                <h2>Inca Trail, Peru Trip</h2>
-                <img className="ml-2" src="/Arrow.png" alt="NextIcon" />
-              </span>
-            </div>
-          </section>
-          <section className="w-1/3 h-[90vh] flex items-end relative overflow-hidden">
-            <img
-              src="/bg5.jpg"
-              alt="Background Image"
-              className="absolute inset-0 object-cover w-full h-full"
-            />
-            <div className="relative z-10 p-5 text-white">
-              <h2>Why you should</h2>
-              <h2>reconsider The</h2>
-              <span className="flex items-center">
-                <h2>Inca Trail, Peru Trip</h2>
-                <img className="ml-2" src="/Arrow.png" alt="NextIcon" />
-              </span>
-            </div>
-          </section>
-          <section className="w-1/3 h-[90vh] flex items-end relative overflow-hidden">
-            <img
-              src="/bg6.jpg"
-              alt="Background Image"
-              className="absolute inset-0 object-cover w-full h-full"
-            />
-            <div className="relative z-10 p-5 text-white">
-              <h2>Why you should</h2>
-              <h2>reconsider The</h2>
-              <span className="flex items-center">
-                <h2>Inca Trail, Peru Trip</h2>
-                <img className="ml-2" src="/Arrow.png" alt="NextIcon" />
-              </span>
-            </div>
-          </section>
+          ))}
         </div>
       </div>
-      <span className="absolute font-bold inset-0 flex items-center justify-center z-20 text-center text-white text-4xl pointer-events-none">
+
+      {/* Additional content */}
+      <div className="flex justify-center items-center mt-10">
+        {/* <h1 className="text-4xl font-bold">Explore Amazing Destinations</h1> */}
+      </div>
+      <span className="absolute top-[-80px] font-bold inset-0 flex items-center justify-center z-20 text-center text-white md:text-4xl text-2xl pointer-events-none">
         <div>
-          <h1>Travel Stories from Different </h1>
-          <h1>People Globally</h1>
+          <h1>Discover New Places and Create</h1>
+          <h1>Unforgettable Memories</h1>
         </div>
       </span>
 
-      <div className="mt-10">
+      <div className="pt-5">
         <h3 className="px-3 text-xl font-bold">Top Travel Stories</h3>
-        <span className="flex mx-3 items-center justify-between">
-          <p>Discover our top travel stories from our active users</p>
-          <button className="rounded-3xl text-blue-500 bg-transparent py-1 px-3 border-blue-500 border-2">
+        <span className="flex sm:items-center sm:flex-row items-start flex-col mx-3 justify-between">
+          <p>Explore our latest Stories from our active users</p>
+          <button className="sm:mt-0 mt-3 items-center rounded-3xl text-blue-500 bg-transparent py-1 px-3 border-blue-500 border-2">
             View all Stories
           </button>
         </span>
       </div>
+
+      {/* <CarouselButton scrollRef={topLocationsCarouselRef} /> */}
+
+      {/* Top Travel Stories */}
 
       <div className="flex mt-7 flex-wrap justify-center gap-4">
         <PostCard />
@@ -76,9 +111,11 @@ const page = () => {
         <PostCard />
         <PostCard />
         <PostCard />
+        <PostCard />
+        <PostCard />
       </div>
-    </div>
+    </main>
   );
 };
 
-export default page;
+export default Home;

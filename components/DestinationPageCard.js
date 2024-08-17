@@ -10,7 +10,7 @@ const distinaationPageCard = () => {
           alt=""
         />
       </div>
-      <span className="flex flex-col gap-1 mt-2">
+      <span className="flex flex-col md:items-start items-center gap-1 mt-2">
         <p className="text-xs">Asia</p>
         <h2 className="font-bold">China</h2>
       </span>

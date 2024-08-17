@@ -25,17 +25,19 @@ const page = () => {
         </div>
 
         {/* Search Bar */}
-        <div className="relative w-1/2 mt-14 ml-20">
-          <input
-            className="w-full p-3 rounded-full pl-10 pr-12 border border-gray-500 placeholder-gray-400 focus:border-blue-700 focus:outline-none"
-            type="text"
-            placeholder="Search for places, hotels, and restaurants"
-          />
-          <img
-            src="/blueSearch.png"
-            alt="Search"
-            className="absolute right-3 top-1/2 transform -translate-y-1/2 w-6 h-6"
-          />
+        <div className="relative w-full md:w-2/3  mt-14 px-5 md:px-20">
+          <div className="relative flex items-center">
+            <input
+              className="w-full p-3 rounded-full pl-10 pr-12 border border-gray-500 placeholder-gray-400 focus:border-blue-700 focus:outline-none"
+              type="text"
+              placeholder="Search for places, hotels, and restaurants"
+            />
+            <img
+              src="/blueSearch.png"
+              alt="Search"
+              className="absolute right-4 top-1/2 transform -translate-y-1/2 w-6 h-6"
+            />
+          </div>
         </div>
 
         {/* Sorting Algorithm is still pending */}
@@ -50,7 +52,6 @@ const page = () => {
           <DestinationPageCard />
           <DestinationPageCard />
         </div>
-        
       </div>
     </div>
   );
