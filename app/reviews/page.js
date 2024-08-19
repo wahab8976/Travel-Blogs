@@ -10,8 +10,6 @@ const Review = () => {
   // Form Data is coming from WriteComponent by passing this function as props
   const handleFormSubmission = async (formData) => {
     console.log("Form Data Submitted:", formData);
-    const baseURL = process.env.BASE_URL;
-    const finalURL = `${baseURL}/api/reviews`;
 
     const options = {
       method: "POST",
@@ -22,7 +20,7 @@ const Review = () => {
     };
 
     try {
-      const response = await fetch(finalURL, options);
+      const response = await fetch("/api/reviews", options);
       const jsonResponse = await response.json();
       console.log("Response from the server:", jsonResponse);
     } catch (error) {

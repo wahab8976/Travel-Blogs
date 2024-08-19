@@ -1,7 +1,7 @@
 "use client";
 import { DatePicker } from "@nextui-org/date-picker";
 import React, { useState } from "react";
-
+import moment from "moment";
 const WriteReview = ({ handleFormSubmission }) => {
   const [formData, setFormData] = useState({
     title: "",
@@ -16,7 +16,13 @@ const WriteReview = ({ handleFormSubmission }) => {
   };
 
   const handleDateChange = (date) => {
-    setFormData({ ...formData, date });
+    const momentDate = moment(date);
+    if (momentDate.isValid()) {
+      const isoString = momentDate.toISOString();
+      setFormData({ ...formData, date: isoString });
+    } else {
+      setFormData({ ...formData, date: "" }); // or handle the value as an empty string
+    }
   };
 
   const handleSubmit = (e) => {
@@ -90,6 +96,7 @@ const WriteReview = ({ handleFormSubmission }) => {
             </label>
             <div>
               <DatePicker
+                aria-label="Select date"
                 id="date"
                 name="date"
                 selected={formData.date}
@@ -98,8 +105,6 @@ const WriteReview = ({ handleFormSubmission }) => {
             </div>
           </div>
         </fieldset>
-
-        
       </article>
     </form>
   );
