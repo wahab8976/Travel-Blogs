@@ -33,8 +33,16 @@ export const POST = async (req) => {
     if (!location)
       return returnNewResponse(400, "Location is required!", false);
     if (!date) return returnNewResponse(400, "Date is required!", false);
+    const userDate = new Date(date); //Overloading to parse user entered date
+    
+    const todayDate = new Date();
+    if (userDate.getFullYear() > todayDate.getFullYear())
+      return returnNewResponse(400, "Enter Valid Date", false);
+    if (userDate.getMonth() > todayDate.getMonth())
+      return returnNewResponse(400, "Enter Valid Date", false);
+    if (userDate.getDay() > todayDate.getDay())
+      return returnNewResponse(400, "Enter Valid Date", false);
 
-    // Create a new review document
     const newReview = new Review({
       title,
       review,

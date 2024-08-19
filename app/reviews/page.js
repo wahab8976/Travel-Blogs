@@ -5,12 +5,21 @@ import React, { useState } from "react";
 
 const Review = () => {
   const [enableReview, setEnableReview] = useState(false);
-
+  const [error, setError] = useState(null);
   // Function to handle form submission
   // Form Data is coming from WriteComponent by passing this function as props
   const handleFormSubmission = async (formData) => {
     console.log("Form Data Submitted:", formData);
 
+    if (
+      formData.title.length === 0 ||
+      formData.Review.length === 0 ||
+      formData.location.length === 0 ||
+      formData.date.length === 0
+    ) {
+      setError("All fields are required!");
+      return;
+    }
     const options = {
       method: "POST",
       headers: {
@@ -22,9 +31,17 @@ const Review = () => {
     try {
       const response = await fetch("/api/reviews", options);
       const jsonResponse = await response.json();
-      console.log("Response from the server:", jsonResponse);
+
+      if (!response.ok) {
+        // Display error from backend
+        setError(jsonResponse.message || "An unknown error occurred.");
+      } else {
+        // Clear error if submission is successful
+        setError(null);
+      }
     } catch (error) {
       console.error("Error submitting form:", error);
+      setError(error.message || "An error occurred while submitting the form.");
     }
   };
 
@@ -99,6 +116,12 @@ const Review = () => {
                 Add Review
               </button>
             </span>
+
+            {error && (
+              <div className="flex justify-center text-red-700 text-sm">
+                {error}
+              </div>
+            )}
           </>
         ) : null}
       </div>
