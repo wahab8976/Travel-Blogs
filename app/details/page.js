@@ -3,7 +3,7 @@ import React from "react";
 
 const page = () => {
   return (
-    <div>
+    <div className="overflow-hidden">
       {/* Background Image Section */}
       <div className="relative w-full h-[90vh] overflow-hidden">
         <img
@@ -24,7 +24,7 @@ const page = () => {
       <div className="flex flex-col mt-10 items-center">
         <h2 className="text-6xl text-blue-600 font-bold font-sans">Crotia</h2>
         <h3 className="text-xl py-2 text-gray-500">Europe</h3>
-        <article className="text-center mt-5 md:px-32 px- h-auto">
+        <article className="text-center mt-5 md:px-32 px-3 h-auto">
           Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolore
           dolorum, nostrum provident saepe minima quod natus quae modi
           recusandae veritatis. Cum dolores dolorum nostrum expedita impedit aut

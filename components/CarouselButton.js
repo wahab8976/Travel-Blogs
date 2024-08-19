@@ -1,8 +1,6 @@
 import React, { useRef } from "react";
 
 const CarouselButton = ({ scrollRef }) => {
-
-  
   const scrollContainer = (direction) => {
     if (scrollRef.current) {
       const scrollAmount = scrollRef.current.clientWidth; // Amount to scroll
@@ -20,7 +18,7 @@ const CarouselButton = ({ scrollRef }) => {
         className="hover:cursor-pointer"
       >
         <img
-          className="p-2 rounded-full rotate-180 bg-blue-400"
+          className="p-2 rounded-full rotate-180 bg-blue-500"
           src="/next.png"
           alt="Previous"
         />
@@ -30,7 +28,7 @@ const CarouselButton = ({ scrollRef }) => {
         className="hover:cursor-pointer"
       >
         <img
-          className="p-2 rounded-full bg-blue-400"
+          className="p-2 rounded-full bg-blue-500"
           src="/next.png"
           alt="Next"
         />
