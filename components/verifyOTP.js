@@ -1,23 +1,34 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
-const OTPInput = ({ length = 6, onChange }) => {
+const OTPInput = ({ length = 4, onChange }) => {
+  // State to hold OTP digits
   const [otp, setOtp] = useState(new Array(length).fill(""));
 
+  // Effect to notify parent component when OTP is complete
+  useEffect(() => {
+    const otpValue = otp.join("");
+    if (otpValue.length === length) {
+      onChange(otpValue); // Notify parent about the OTP change
+    }
+  }, [otp, length, onChange]);
+
+  // Handle input changes
   const handleChange = (e, index) => {
     const { value } = e.target;
-    if (/[^0-9]/.test(value)) return;
+    if (/[^0-9]/.test(value)) return; // Allow only numbers
 
     const newOtp = [...otp];
-    newOtp[index] = value.slice(-1);
+    newOtp[index] = value.slice(-1); // Update digit at index
 
     setOtp(newOtp);
-    onChange(newOtp.join(""));
 
+    // Move focus to next input if present
     if (value && index < length - 1) {
       e.target.nextSibling.focus();
     }
   };
 
+  // Handle key down for backspace
   const handleKeyDown = (e, index) => {
     if (e.key === "Backspace" && !otp[index] && index > 0) {
       e.target.previousSibling.focus();
