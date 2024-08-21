@@ -10,39 +10,6 @@ const Review = () => {
   // Form Data is coming from WriteComponent by passing this function as props
   const handleFormSubmission = async (formData) => {
     console.log("Form Data Submitted:", formData);
-
-    if (
-      formData.title.length === 0 ||
-      formData.Review.length === 0 ||
-      formData.location.length === 0 ||
-      formData.date.length === 0
-    ) {
-      setError("All fields are required!");
-      return;
-    }
-    const options = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    };
-
-    try {
-      const response = await fetch("/api/reviews", options);
-      const jsonResponse = await response.json();
-
-      if (!response.ok) {
-        // Display error from backend
-        setError(jsonResponse.message || "An unknown error occurred.");
-      } else {
-        // Clear error if submission is successful
-        setError(null);
-      }
-    } catch (error) {
-      console.error("Error submitting form:", error);
-      setError(error.message || "An error occurred while submitting the form.");
-    }
   };
 
   return (
@@ -99,21 +66,6 @@ const Review = () => {
                 onClick={() => setEnableReview(false)}
               >
                 Cancel
-              </button>
-              <button
-                type="submit"
-                className="mb-5 bg-blue-500 text-white p-2 rounded-lg"
-                onClick={() => {
-                  // Simulate form submission by triggering the form's submit event
-                  const form = document.querySelector("form");
-                  if (form) {
-                    form.dispatchEvent(
-                      new Event("submit", { cancelable: true, bubbles: true })
-                    );
-                  }
-                }}
-              >
-                Add Review
               </button>
             </span>
 

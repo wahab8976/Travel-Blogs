@@ -1,110 +1,128 @@
 "use client";
-import { DatePicker } from "@nextui-org/date-picker";
 import React, { useState } from "react";
-import moment from "moment";
+import { useForm } from "react-hook-form";
+import DateSelector from "./DateSelector";
+
 const WriteReview = ({ handleFormSubmission }) => {
-  const [formData, setFormData] = useState({
-    title: "",
-    review: "",
-    date: "",
-    location: "",
-  });
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    watch,
+    formState: { errors },
+  } = useForm();
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
-
-  const handleDateChange = (date) => {
-    const momentDate = moment(date);
-    if (momentDate.isValid()) {
-      const isoString = momentDate.toISOString();
-      setFormData({ ...formData, date: isoString });
-    } else {
-      setFormData({ ...formData, date: "" }); // or handle the value as an empty string
-    }
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    handleFormSubmission(formData); // Pass form data to the parent component
+  const onSubmit = (data) => {
+    console.log("Form Data:", data);
+    handleFormSubmission(data);
   };
 
   return (
     <form
-      onSubmit={handleSubmit}
+      onSubmit={handleSubmit(onSubmit)}
       className="text-black pb-3 p-4 md:flex md:flex-row md:justify-center flex-col items-center justify-center gap-5"
     >
-      {/* Figure to upload files by clicking here */}
+      {/* Figure to upload files */}
       <figure className="bg-gray-300 md:w-[30vw] w-[80vw] h-[300px] flex justify-center items-center rounded-3xl mb-6">
         <img src="/uploadFile.png" alt="Upload" />
       </figure>
 
-      {/* Article to Handle Form Data */}
+      {/* Form Fields */}
       <article className="space-y-4 md:w-[50%] w-[90%]">
-        {/* Section to take Title Input */}
+        {/* Title Field */}
         <fieldset>
           <legend className="block font-semibold mb-1">
             Title of your Travel Journey
           </legend>
           <input
+            {...register("title", {
+              required: "Title is required!",
+              minLength: {
+                value: 3,
+                message: "Minimum length of Title is 3 characters",
+              },
+            })}
             type="text"
             id="title"
-            name="title"
             placeholder="Summarize your Travel Journey"
             className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-            value={formData.title}
-            onChange={handleInputChange}
           />
+          {errors.title && (
+            <span className="text-red-500 text-sm">{errors.title.message}</span>
+          )}
         </fieldset>
 
-        {/* Section to take Review detail Input */}
+        {/* Review Field */}
         <fieldset>
           <legend className="block font-semibold mb-1">Your Review</legend>
           <textarea
+            {...register("review", {
+              required: "Review is required!",
+              minLength: {
+                value: 10,
+                message: "Minimum length of Review is 10 characters",
+              },
+            })}
             id="review"
-            name="review"
             placeholder="A detailed Review of your Travel Journey. Travelers will love to know your reviews!"
             className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             rows="5"
-            value={formData.review}
-            onChange={handleInputChange}
           />
+          {errors.review && (
+            <span className="text-red-500 text-sm">
+              {errors.review.message}
+            </span>
+          )}
         </fieldset>
 
-        {/* Section to take Location Input */}
+        {/* Location and Date Fields */}
         <fieldset className="flex gap-2">
           <div className="w-1/2">
             <label htmlFor="location" className="block font-semibold mb-1">
-              Your travel Location
+              Your Travel Location
             </label>
             <input
+              {...register("location", {
+                required: "Location is required!",
+              })}
               type="text"
               id="location"
-              name="location"
               placeholder="Your travel Location"
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-              value={formData.location}
-              onChange={handleInputChange}
             />
+            {errors.location && (
+              <span className="text-red-500 text-sm">
+                {errors.location.message}
+              </span>
+            )}
           </div>
 
-          {/* Section to take Date Input */}
+          {/* Date Field */}
           <div className="w-1/2">
             <label htmlFor="date" className="block font-semibold mb-1">
               Select Date of Travel
             </label>
-            <div>
-              <DatePicker
-                aria-label="Select date"
-                id="date"
-                name="date"
-                selected={formData.date}
-                onChange={handleDateChange}
-              />
-            </div>
+            <DateSelector
+              value={watch("date")} // Bind the date to React Hook Form
+              onChange={(date) => setValue("date", date)} // Update date value in form
+            />
+            {errors.date && (
+              <span className="text-red-500 text-sm">
+                {errors.date.message}
+              </span>
+            )}
           </div>
         </fieldset>
+
+        {/* Submit Button */}
+        <div className="flex justify-center">
+          <button
+            type="submit"
+            className="mb-5 bg-blue-500 text-white p-2 rounded-lg"
+          >
+            Add Review
+          </button>
+        </div>
       </article>
     </form>
   );
