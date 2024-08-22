@@ -2,12 +2,20 @@
 import GoogleLoginBtn from "@/components/GoogleLoginBtn"; // Importing a custom Google login button component
 import React, { useState } from "react"; // Importing React and useState hook
 import { useRouter } from "next/navigation"; // Importing Next.js router for client-side navigation
-import OTPInput from "@/components/verifyOTP";
+import OTPInput from "@/components/verifyOTP"; // Importing OTP input component
+import { useForm } from "react-hook-form"; // Importing useForm from React Hook Form
 
 const LoginPage = () => {
   // State to manage password visibility
-  const [showPassword, setShowPassword] = useState(true); // Password visibility toggle state
-  const [steps, setSteps] = useState("logIn"); // State to manage steps or stages of the login process
+  const [showPassword, setShowPassword] = useState(true);
+  const [steps, setSteps] = useState("logIn"); // State to manage login steps
+
+  // React Hook Form setup
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
   // Router instance to navigate to signup page
   const router = useRouter();
@@ -26,10 +34,16 @@ const LoginPage = () => {
     router.push("/signup"); // Adjust the path based on your signup route
   };
 
+  // Function to handle form submission
+  const onSubmit = (data) => {
+    console.log("Form Data:", data);
+    // Handle login logic here
+  };
+
   return (
-    <div className="flex h-screen bg-white  ">
+    <div className="flex h-screen bg-white">
       {/* Left side of the screen with background image */}
-      <div className="hidden  lg:block lg:w-1/2">
+      <div className="hidden lg:block lg:w-1/2">
         <img
           className="w-full h-full object-cover"
           src="/logInBG.jpg"
@@ -52,15 +66,29 @@ const LoginPage = () => {
             </div>
 
             {/* Login form */}
-            <form className="space-y-6">
+            <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
               {/* Email Input */}
               <div>
                 <input
                   type="email"
                   id="email"
                   placeholder="Email Address"
-                  className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500"
+                  className={`w-full px-4 py-2 border ${
+                    errors.email ? "border-red-500" : "border-gray-300"
+                  } rounded focus:outline-none focus:border-blue-500`}
+                  {...register("email", {
+                    required: "Email is required",
+                    pattern: {
+                      value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                      message: "Enter a valid email address",
+                    },
+                  })}
                 />
+                {errors.email && (
+                  <p className="text-red-500 text-sm mt-1">
+                    {errors.email.message}
+                  </p>
+                )}
               </div>
 
               {/* Password Input with visibility toggle */}
@@ -69,7 +97,16 @@ const LoginPage = () => {
                   type={showPassword ? "text" : "password"}
                   id="password"
                   placeholder="Password"
-                  className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500"
+                  className={`w-full px-4 py-2 border ${
+                    errors.password ? "border-red-500" : "border-gray-300"
+                  } rounded focus:outline-none focus:border-blue-500`}
+                  {...register("password", {
+                    required: "Password is required",
+                    minLength: {
+                      value: 6,
+                      message: "Password must be at least 6 characters long",
+                    },
+                  })}
                 />
                 {/* Toggle button to show/hide password */}
                 <span
@@ -82,18 +119,22 @@ const LoginPage = () => {
                     <img className="h-[18px]" src="/hide.png" alt="Hide" />
                   )}
                 </span>
+                {errors.password && (
+                  <p className="text-red-500 text-sm mt-1">
+                    {errors.password.message}
+                  </p>
+                )}
               </div>
 
+              {/* Remember Me and Forgot Password */}
               <div className="flex w-full justify-between text-xs">
-                {/* Checkbox for Remember Me or Forgot Password */}
-
                 <div className="flex items-center space-x-2">
                   <input
                     type="checkbox"
                     id="remember"
                     name="remember"
                     className="w-5 h-5 border-2 border-blue-500 rounded appearance-none checked:bg-blue-500 checked:border-blue-500 checked:before:content-['✔'] checked:before:absolute checked:before:left-1 checked:before:top-0.5 checked:before:text-white checked:before:text-lg cursor-pointer"
-                  ></input>
+                  />
                   <label htmlFor="remember" className="text-gray-700">
                     Remember me
                   </label>
@@ -102,6 +143,7 @@ const LoginPage = () => {
                   Forgot Password?
                 </span>
               </div>
+
               {/* Submit Button */}
               <div>
                 <button
@@ -138,22 +180,12 @@ const LoginPage = () => {
             </div>
             <OTPInput length={4} onChange={handleOtpChange} />
 
-            {/* Email Input */}
-            <div className="mb-4">
-              <input
-                type="email"
-                id="email"
-                placeholder="Email Address"
-                className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500"
-              />
-            </div>
-
             <div className="flex flex-col items-center space-y-3">
-              {/* Verify Email Button  */}
+              {/* Verify Email Button */}
               <button className="w-[150px] bg-blue-600 text-white text-sm py-3 rounded-3xl hover:bg-blue-500 transition duration-200">
                 Verify
               </button>
-              {/* Resend Email Button  */}
+              {/* Resend Email Button */}
               <button className="w-[150px] text-blue-600 border border-blue-600 text-sm py-3 rounded-3xl hover:bg-blue-600 hover:text-white transition duration-200">
                 Resend
               </button>

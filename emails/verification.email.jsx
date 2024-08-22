@@ -9,7 +9,7 @@ export const EmailTemplate = ({ userName, OTP }) => (
         </h1>
       </div>
       <p className="text-lg mb-4">
-        Hello <span className="font-semibold">{userName}</span>,
+        Greetings! <span className="font-semibold">{userName}</span>,
       </p>
       <p className="mb-4">
         Thank you for signing up with{" "}

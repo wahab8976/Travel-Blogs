@@ -16,6 +16,7 @@
     "@nextui-org/checkbox": "^2.1.4",
     "@nextui-org/react": "^2.4.6",
     "@tailwindcss/typography": "^0.5.14",
+    "bcrypt": "^5.1.1",
     "flowbite": "^2.5.1",
     "framer-motion": "^11.3.27",
     "moment": "^2.30.1",

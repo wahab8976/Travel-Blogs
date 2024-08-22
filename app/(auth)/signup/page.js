@@ -45,6 +45,7 @@ const Page = () => {
       const otpFromServer = await response.json();
       setGeneratedOTP(Number(otpFromServer));
       console.log("Generated OTP", otpFromServer);
+
       setStep("Verification"); // Switch to verification step
     } catch (error) {
       console.error(`Error: ${error.message}`);
@@ -53,11 +54,37 @@ const Page = () => {
   };
 
   // Compare entered OTP with generated OTP
-  const compareOTP = (enteredOTP) => {
+  const compareOTP = async (enteredOTP) => {
     console.log("Generated OTP:", generatedOTP);
     console.log("Entered OTP:", enteredOTP);
     if (enteredOTP == generatedOTP) {
       console.log("OTP Verified");
+      const userName = watch("userName");
+      const email = watch("email");
+      const password = watch("password");
+
+      const reqParams = {
+        userName,
+        email,
+        password,
+      };
+      try {
+        const response = await fetch(`/api/signup`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(reqParams),
+        });
+
+        const serverResponse = await response.json();
+        console.log(`Server response is ${serverResponse}`);
+        if (!response.ok) {
+          setError(serverResponse.message); // Update here to use serverResponse.message
+          return;
+        }
+      } catch (error) {
+        console.error(error);
+      }
+
       router.push("/"); // Redirect on successful verification
     } else {
       console.log("Invalid OTP");
@@ -253,8 +280,13 @@ const Page = () => {
               >
                 Verify
               </button>
-              <button className="text-blue-600 hover:text-white hover:bg-blue-600 transition-all duration-200 border-blue-600 border-2 text-sm w-[80%] py-3 rounded-3xl">
-                Resend
+              <button
+                onClick={() => {
+                  setStep("signUp");
+                }}
+                className="text-blue-600 hover:text-white hover:bg-blue-600 transition-all duration-200 border-blue-600 border-2 text-sm w-[80%] py-3 rounded-3xl"
+              >
+                back
               </button>
             </div>
             {error && <span className="text-red-500 text-sm">{error}</span>}
