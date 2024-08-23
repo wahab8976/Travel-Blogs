@@ -9,7 +9,7 @@ const LoginPage = () => {
   // State to manage password visibility
   const [showPassword, setShowPassword] = useState(true);
   const [steps, setSteps] = useState("logIn"); // State to manage login steps
-
+  const [error, setError] = useState(null);
   // React Hook Form setup
   const {
     register,
@@ -35,9 +35,44 @@ const LoginPage = () => {
   };
 
   // Function to handle form submission
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     console.log("Form Data:", data);
-    // Handle login logic here
+
+    try {
+      const email = data.email;
+      const password = data.password;
+      console.log(`Request Params: Email ${email} - Password ${password}`);
+
+      const reqParams = {
+        email,
+        password,
+      };
+
+      const response = await fetch(`/api/login`, {
+        method: "POST",
+        body: JSON.stringify(reqParams),
+        headers: { "Content-Type": "application/json" },
+      });
+
+      // Log the raw response
+
+      // Parse the JSON response
+      const serverResponse = await response.json();
+
+      // Log the parsed response
+      console.log(`Parsed Response: ${JSON.stringify(serverResponse)}`);
+
+      // Check if the response is not ok and handle the error
+      if (!response.ok) {
+        setError(serverResponse.message);
+        return;
+      }
+
+      // If login is successful, redirect the user
+      router.push("/");
+    } catch (error) {
+      console.error("Error during form submission:", error);
+    }
   };
 
   return (
@@ -144,6 +179,7 @@ const LoginPage = () => {
                 </span>
               </div>
 
+              {error && <div className="text-red-500 text-sm">{error}</div>}
               {/* Submit Button */}
               <div>
                 <button

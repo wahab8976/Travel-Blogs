@@ -7,7 +7,7 @@ export const POST = async (req) => {
   dbConnect();
   try {
     // Parse the JSON body
-    const { userName, email, password } = await req.json(); // assuming the request body is JSON
+    let { userName, email, password } = await req.json(); // assuming the request body is JSON
 
     // Check if the user already exists (commented out in your code)
     const isExistingUser = await userSchema.findOne({ email });
@@ -32,6 +32,9 @@ export const POST = async (req) => {
 
     // Create a new user
     console.log(`Here is username in Route.js ${userName}`);
+
+    email = email.toLowerCase();
+
     const newUser = await new userSchema({
       userName,
       email,
@@ -41,12 +44,20 @@ export const POST = async (req) => {
     await newUser.save();
 
     // Return success response after user creation
-    return returnNewResponse(201, "User Created", true);
+    return NextResponse.json(
+      {
+        success: true,
+        message: "User Created",
+      },
+      {
+        status: 201,
+      }
+    );
   } catch (error) {
     console.error("Error handling the POST request:", error);
 
     // Return error response
-    return new NextResponse(
+    return NextResponse(
       JSON.stringify({
         success: false,
         message: "Something went wrong",
