@@ -7,7 +7,7 @@ import { NextUIProvider } from "@nextui-org/react";
 import { usePathname } from "next/navigation";
 import { SidebarProvider } from "@/context/SidebarContext"; // Import the SidebarProvider
 
-export function Providers({ children }) {
+export function Providers({ children, session, ...pageProps }) {
   const pathName = usePathname(); // Use pathname Hook to check the current path
 
   return (

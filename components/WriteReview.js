@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import DateSelector from "./DateSelector";
+import { CldUploadWidget } from "next-cloudinary";
 
 const WriteReview = ({ handleFormSubmission }) => {
   const {
@@ -23,10 +24,20 @@ const WriteReview = ({ handleFormSubmission }) => {
       className="text-black pb-3 p-4 md:flex md:flex-row md:justify-center flex-col items-center justify-center gap-5"
     >
       {/* Figure to upload files */}
-      <figure className="bg-gray-300 md:w-[30vw] w-[80vw] h-[300px] flex justify-center items-center rounded-3xl mb-6">
-        <img src="/uploadFile.png" alt="Upload" />
+      <figure className="bg-gray-300  md:w-[30vw] w-[80vw] h-[300px] flex justify-center items-center rounded-3xl mb-6">
+        <CldUploadWidget uploadPreset="Travel-Pulse">
+          {({ open }) => {
+            return (
+              <img
+                className="hover:cursor-pointer"
+                onClick={() => open()}
+                src="/uploadFile.png"
+                alt="Upload"
+              />
+            );
+          }}
+        </CldUploadWidget>
       </figure>
-
       {/* Form Fields */}
       <article className="space-y-4 md:w-[50%] w-[90%]">
         {/* Title Field */}

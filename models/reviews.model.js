@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 
+// Review Schema
 const reviewSchema = new mongoose.Schema(
   {
     title: {
@@ -17,6 +18,11 @@ const reviewSchema = new mongoose.Schema(
     date: {
       type: String,
       required: [true, "Date is a required field"],
+    },
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User", // Referencing the User model
+      required: [true, "User reference is required"],
     },
   },
   { timestamps: true }

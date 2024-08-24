@@ -3,9 +3,11 @@ import ReviewCard from "@/components/ReviewCard";
 import WriteReview from "@/components/WriteReview";
 import React, { useState } from "react";
 
+
 const Review = () => {
   const [enableReview, setEnableReview] = useState(false);
   const [error, setError] = useState(null);
+
   // Function to handle form submission
   // Form Data is coming from WriteComponent by passing this function as props
   const handleFormSubmission = async (formData) => {
@@ -77,7 +79,6 @@ const Review = () => {
           </>
         ) : null}
       </div>
-
       {!enableReview && (
         <div className="flex flex-col items-center">
           <ReviewCard />

@@ -10,6 +10,7 @@ const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(true);
   const [steps, setSteps] = useState("logIn"); // State to manage login steps
   const [error, setError] = useState(null);
+  
   // React Hook Form setup
   const {
     register,
