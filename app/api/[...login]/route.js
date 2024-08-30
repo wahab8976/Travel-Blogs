@@ -1,52 +1,83 @@
-import userSchema from "@/models/user.model";
-import bcrypt from "bcrypt";
-import dbConnect from "@/DataBase/connectDB";
 import { NextResponse } from "next/server";
+import bcrypt from "bcrypt";
+import dbConnect from "@/DataBase/connectDB"; // Adjust the import path accordingly
+import userSchema from "@/models/user.model"; // Adjust the import path accordingly
+import jwt from "jsonwebtoken";
 
 export const POST = async (request) => {
-  await dbConnect();
-  let { email, password } = await request.json();
+  try {
+    await dbConnect();
 
-  email = email.toLowerCase();
-  const existingUser = await userSchema.findOne({ email });
+    // Parse the request body
+    const { email, password } = await request.json();
 
-  if (!existingUser) {
-    return NextResponse.json(
-      {
-        success: false,
-        message: "No Account exists with this email",
-      },
-      {
-        status: 400,
-      }
-    );
-  }
+    // Convert email to lowercase
+    const normalizedEmail = email.toLowerCase();
 
-  const isValidPassword = await bcrypt.compare(password, existingUser.password);
+    // Find the user by email
+    const existingUser = await userSchema.findOne({ email: normalizedEmail });
 
-  if (!isValidPassword) {
-    return NextResponse.json(
-      {
-        success: false,
-        message: "Password doesn't match",
-      },
-      {
-        status: 403,
-      }
-    );
-  }
-
-  // Exclude sensitive data before returning the user object
-  const { password: _, ...userWithoutPassword } = existingUser._doc;
-
-  return NextResponse.json(
-    {
-      success: true,
-      message: "User Authenticated Successfully!",
-      user: userWithoutPassword,
-    },
-    {
-      status: 200,
+    if (!existingUser) {
+      return NextResponse.json(
+        {
+          success: false,
+          message: "No account exists with this email",
+        },
+        {
+          status: 400,
+        }
+      );
     }
-  );
+
+    // Verify the password
+    const isValidPassword = await bcrypt.compare(
+      password,
+      existingUser.password
+    );
+
+    if (!isValidPassword) {
+      return NextResponse.json(
+        {
+          success: false,
+          message: "Password doesn't match",
+        },
+        {
+          status: 403,
+        }
+      );
+    }
+
+    // Exclude sensitive data before returning the user object
+    const { password: _, ...userWithoutPassword } = existingUser._doc;
+
+    // Include the _id in the payload
+    const payload = { id: existingUser._id };
+    console.log(`Payload: ${JSON.stringify(payload)}`);
+    const privateKey = process.env.JWT_SECRET;
+    const token = jwt.sign(payload, privateKey, { expiresIn: "1d" });
+
+    const response = NextResponse.json(
+      {
+        success: true,
+        message: "User authenticated successfully!",
+        user: userWithoutPassword,
+      },
+      {
+        status: 200,
+      }
+    );
+    response.cookies.set("token", token);
+    return response;
+  } catch (error) {
+    console.error("Error in POST handler:", error);
+    return NextResponse.json(
+      {
+        success: false,
+        message: "An error occurred",
+      },
+      {
+        status: 500,
+      }
+    );
+  }
 };

@@ -2,61 +2,57 @@
 import Review from "@/models/reviews.model";
 import { NextResponse } from "next/server";
 import dbConnect from "@/DataBase/connectDB";
-
-// Utility function to return a response
-const returnNewResponse = (status, message, success) => {
-  return new NextResponse(
-    JSON.stringify({
-      message: message,
-      success: success,
-    }),
-    {
-      status: status,
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }
-  );
-};
+import { getUserFromToken } from "@/utils/getUserFromToken";
 
 export const POST = async (req) => {
   // Connect to the database
   await dbConnect();
   console.log("Request is just after DB");
+
   try {
     const { title, review, location, date } = await req.json(); // Parse the request body as JSON
     console.log("Request is in Try Block");
 
     // Validate required fields
-    if (!title) return returnNewResponse(400, "Title is required!", false);
-    if (!review) return returnNewResponse(400, "Review is required!", false);
-    if (!location)
-      return returnNewResponse(400, "Location is required!", false);
-    if (!date) return returnNewResponse(400, "Date is required!", false);
-    const userDate = new Date(date); //Overloading to parse user entered date
-    
-    const todayDate = new Date();
-    if (userDate.getFullYear() > todayDate.getFullYear())
-      return returnNewResponse(400, "Enter Valid Date", false);
-    if (userDate.getMonth() > todayDate.getMonth())
-      return returnNewResponse(400, "Enter Valid Date", false);
-    if (userDate.getDay() > todayDate.getDay())
-      return returnNewResponse(400, "Enter Valid Date", false);
+    if (!title || !review || !location || !date) {
+      return NextResponse.json(
+        { success: "false", message: "All fields are required" },
+        { status: 400 }
+      );
+    }
+
+    const { day, year, month } = date;
+    const userDate = { day, year, month };
+
+    console.log("Year:", year);
+    console.log("Month:", month);
+    console.log("Day:", day);
+    console.log(`Requested Date: ${JSON.stringify(date)}`);
+
+    const userID = await getUserFromToken(req);
+    console.log(`Got Token: ${userID}`);
 
     const newReview = new Review({
       title,
       review,
       location,
-      date,
+      date: JSON.stringify(userDate),
+      userID,
+      user: userID,
     });
 
     // Save the review to the database
     await newReview.save();
 
-    // Return success response
-    return returnNewResponse(201, "Review created successfully!", true);
+    return NextResponse.json(
+      { success: "true", message: "Review Added" },
+      { status: 201 }
+    );
   } catch (error) {
-    // Handle any errors and return a failure response
-    return returnNewResponse(500, error.message || "An error occurred!", false);
+    console.log(`Error: ${error.message}`);
+    return NextResponse.json(
+      { success: "false", message: "Something went wrong" },
+      { status: 500 } // Use 500 for server errors
+    );
   }
 };

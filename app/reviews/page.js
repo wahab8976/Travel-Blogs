@@ -3,7 +3,6 @@ import ReviewCard from "@/components/ReviewCard";
 import WriteReview from "@/components/WriteReview";
 import React, { useState } from "react";
 
-
 const Review = () => {
   const [enableReview, setEnableReview] = useState(false);
   const [error, setError] = useState(null);
@@ -12,6 +11,37 @@ const Review = () => {
   // Form Data is coming from WriteComponent by passing this function as props
   const handleFormSubmission = async (formData) => {
     console.log("Form Data Submitted:", formData);
+
+    try {
+      const { date, review, title, location } = formData;
+      const queryParams = {
+        review,
+        title,
+        date,
+        location,
+      };
+
+      const response = await fetch(`/api/reviews`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(queryParams),
+      });
+
+      if (!response.ok) {
+        try {
+          const parsedResponse = await response.json();
+          setError(parsedResponse.message || "An error occurred");
+        } catch (jsonError) {
+          setError("Failed to parse error response");
+        }
+      } else {
+        console.log("Data Added");
+        setError(null); // Clear any previous errors
+      }
+    } catch (error) {
+      console.error(error);
+      setError("An unexpected error occurred");
+    }
   };
 
   return (

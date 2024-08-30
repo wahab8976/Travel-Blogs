@@ -17,7 +17,7 @@ const reviewSchema = new mongoose.Schema(
     },
     date: {
       type: String,
-      required: [true, "Date is a required field"],
+      required: [true, "Date is required"],
     },
     user: {
       type: mongoose.Schema.Types.ObjectId,
