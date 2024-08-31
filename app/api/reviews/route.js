@@ -10,9 +10,9 @@ export const POST = async (req) => {
   console.log("Request is just after DB");
 
   try {
-    const { title, review, location, date } = await req.json(); // Parse the request body as JSON
+    const { title, review, location, date, imageUrl } = await req.json(); // Parse the request body as JSON
     console.log("Request is in Try Block");
-
+    console.log(`Images URL is ${JSON.stringify(imageUrl)}`);
     // Validate required fields
     if (!title || !review || !location || !date) {
       return NextResponse.json(
@@ -49,6 +49,7 @@ export const POST = async (req) => {
       date: JSON.stringify(userDate),
       userID,
       user: userID,
+      imageUrl,
     });
 
     // Save the review to the database

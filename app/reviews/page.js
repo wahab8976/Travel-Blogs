@@ -14,12 +14,13 @@ const Review = () => {
     console.log("Form Data Submitted:", formData);
 
     try {
-      const { date, review, title, location } = formData;
+      const { date, review, title, location, imageUrl } = formData;
       const queryParams = {
         review,
         title,
         date,
         location,
+        imageUrl,
       };
 
       const response = await fetch(`/api/reviews`, {

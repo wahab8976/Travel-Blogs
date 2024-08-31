@@ -19,6 +19,10 @@ const reviewSchema = new mongoose.Schema(
       type: String,
       required: [true, "Date is required"],
     },
+    imageUrl: {
+      type: String,
+      required: [true, "Image is required"],
+    },
     user: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User", // Referencing the User model

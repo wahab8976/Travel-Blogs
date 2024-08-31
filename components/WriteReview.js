@@ -13,9 +13,11 @@ const WriteReview = ({ handleFormSubmission }) => {
     formState: { errors },
   } = useForm();
 
+  const [imageUrl, setImageUrl] = useState(""); // Initialize with an empty string
+
   const onSubmit = (data) => {
-    console.log("Form Data:", data);
-    handleFormSubmission(data);
+    console.log("Form Data:", { ...data, imageUrl }); // Include the image URL in the form data
+    handleFormSubmission({ ...data, imageUrl }); // Pass the image URL along with other form data
   };
 
   return (
@@ -25,7 +27,14 @@ const WriteReview = ({ handleFormSubmission }) => {
     >
       {/* Figure to upload files */}
       <figure className="bg-gray-300  md:w-[30vw] w-[80vw] h-[300px] flex justify-center items-center rounded-3xl mb-6">
-        <CldUploadWidget uploadPreset="Travel-Pulse">
+        <CldUploadWidget
+          uploadPreset="Travel-Pulse"
+          onSuccess={(result) => {
+            const url = result.info.secure_url;
+            setImageUrl(url);
+            setValue("imageUrl", url); // Set the image URL in form state
+          }}
+        >
           {({ open }) => {
             return (
               <img
@@ -124,6 +133,20 @@ const WriteReview = ({ handleFormSubmission }) => {
             )}
           </div>
         </fieldset>
+
+        {/* Hidden Image URL Field */}
+        <input
+          type="hidden"
+          {...register("imageUrl", {
+            required: "Image URL is required!",
+          })}
+          value={imageUrl || ""} // Ensure value is not null
+        />
+        {errors.imageUrl && (
+          <span className="text-red-500 text-sm">
+            {errors.imageUrl.message}
+          </span>
+        )}
 
         {/* Submit Button */}
         <div className="flex justify-center">
