@@ -1,4 +1,5 @@
 import jwt from "jsonwebtoken";
+import { NextResponse } from "next/server";
 
 export const getUserFromToken = async (request) => {
   try {
@@ -11,7 +12,7 @@ export const getUserFromToken = async (request) => {
     console.log(`Final Token: ${finalToken}`);
 
     if (!finalToken) {
-      throw new Error("Token is missing or invalid");
+      return null;
     }
 
     const secretKey = process.env.JWT_SECRET;

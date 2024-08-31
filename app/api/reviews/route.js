@@ -30,6 +30,16 @@ export const POST = async (req) => {
     console.log(`Requested Date: ${JSON.stringify(date)}`);
 
     const userID = await getUserFromToken(req);
+    if (!userID || userID === null) {
+      console.log(`Returned Null`);
+      return NextResponse.json(
+        {
+          success: false,
+          message: "Unauthorized User. Please login before Adding any review",
+        },
+        { status: 500 }
+      );
+    }
     console.log(`Got Token: ${userID}`);
 
     const newReview = new Review({

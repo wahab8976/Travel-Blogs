@@ -1,12 +1,13 @@
 "use client";
 import ReviewCard from "@/components/ReviewCard";
 import WriteReview from "@/components/WriteReview";
-import React, { useState } from "react";
+import React, { use, useState } from "react";
+import { useRouter } from "next/navigation";
 
 const Review = () => {
   const [enableReview, setEnableReview] = useState(false);
   const [error, setError] = useState(null);
-
+  const router = useRouter();
   // Function to handle form submission
   // Form Data is coming from WriteComponent by passing this function as props
   const handleFormSubmission = async (formData) => {
@@ -31,6 +32,7 @@ const Review = () => {
         try {
           const parsedResponse = await response.json();
           setError(parsedResponse.message || "An error occurred");
+          router.push("/login");
         } catch (jsonError) {
           setError("Failed to parse error response");
         }
