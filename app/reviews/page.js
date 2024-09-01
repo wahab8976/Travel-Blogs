@@ -1,15 +1,16 @@
 "use client";
 import ReviewCard from "@/components/ReviewCard";
 import WriteReview from "@/components/WriteReview";
-import React, { use, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
 const Review = () => {
-  const [enableReview, setEnableReview] = useState(false);
-  const [error, setError] = useState(null);
+  const [enableReview, setEnableReview] = useState(false); // State to toggle the review form
+  const [error, setError] = useState(null); // State to handle errors
+  const [fetchReviews, setFetchReviews] = useState([]); // State to store fetched reviews
   const router = useRouter();
+
   // Function to handle form submission
-  // Form Data is coming from WriteComponent by passing this function as props
   const handleFormSubmission = async (formData) => {
     console.log("Form Data Submitted:", formData);
 
@@ -33,19 +34,47 @@ const Review = () => {
         try {
           const parsedResponse = await response.json();
           setError(parsedResponse.message || "An error occurred");
-          router.push("/login");
+          router.push("/login"); // Redirect to login if the user is not authenticated
         } catch (jsonError) {
           setError("Failed to parse error response");
         }
       } else {
         console.log("Data Added");
         setError(null); // Clear any previous errors
+        setEnableReview(false); // Close the review form
       }
     } catch (error) {
       console.error(error);
       setError("An unexpected error occurred");
     }
   };
+
+  // Fetch all reviews when the component is mounted
+  useEffect(() => {
+    const fetchAllReviews = async () => {
+      try {
+        const response = await fetch(`/api/reviews`);
+        const jsonResponse = await response.json();
+
+        if (!response.ok) {
+          setError(jsonResponse.message || "Failed to fetch reviews");
+        } else {
+          // Check if `body` exists and is an array
+          if (Array.isArray(jsonResponse.body)) {
+            console.log(`All reviews: ${JSON.stringify(jsonResponse.body)}`);
+            setFetchReviews(jsonResponse.body);
+          } else {
+            setError("Unexpected response format");
+          }
+        }
+      } catch (fetchError) {
+        console.error(fetchError);
+        setError("An error occurred while fetching reviews");
+      }
+    };
+
+    fetchAllReviews();
+  }, []);
 
   return (
     <div>
@@ -112,13 +141,13 @@ const Review = () => {
           </>
         ) : null}
       </div>
+
       {!enableReview && (
         <div className="flex flex-col items-center">
-          <ReviewCard />
-          <ReviewCard />
-          <ReviewCard />
-          <ReviewCard />
-          <ReviewCard />
+          {/* Ensure fetchReviews is an array */}
+          {fetchReviews.map((review) => (
+            <ReviewCard key={review._id} {...review} />
+          ))}
         </div>
       )}
     </div>

@@ -3,6 +3,7 @@ import Review from "@/models/reviews.model";
 import { NextResponse } from "next/server";
 import dbConnect from "@/DataBase/connectDB";
 import { getUserFromToken } from "@/utils/getUserFromToken";
+import userSchema from "@/models/user.model";
 
 export const POST = async (req) => {
   // Connect to the database
@@ -64,6 +65,35 @@ export const POST = async (req) => {
     return NextResponse.json(
       { success: "false", message: "Something went wrong" },
       { status: 500 } // Use 500 for server errors
+    );
+  }
+};
+
+export const GET = async (req) => {
+  try {
+    // Fetch all reviews and populate the 'user' field with the user's data
+    const reviews = await Review.find({}).populate("user", "userName"); // Populate with the desired fields
+
+    console.log("Reviews to Send are:", reviews);
+
+    // Return the reviews and their corresponding user data to the frontend
+    return NextResponse.json(
+      {
+        success: true,
+        message: "Reviews and Authors Returned",
+        body: reviews,
+      },
+      { status: 200 }
+    );
+  } catch (error) {
+    console.error(error);
+    return NextResponse.json(
+      {
+        success: false,
+        message: "An error occurred while fetching reviews",
+        error: error.message,
+      },
+      { status: 500 }
     );
   }
 };
