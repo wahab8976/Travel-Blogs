@@ -7,7 +7,10 @@ import CarouselButton from "@/components/CarouselButton";
 
 const Home = () => {
   const [sectionData, setSectionData] = useState([]);
+  const [error, setError] = useState(null);
+  const [fetchStories, setFetchStories] = useState([]);
   const carouselRef = useRef(null);
+
   const topLocationsCarouselRef = useRef(null); // Ref for the second carousel
 
   useEffect(() => {
@@ -25,6 +28,29 @@ const Home = () => {
         console.error("Failed to fetch section data", error);
       }
     };
+    const fetchAllReviews = async () => {
+      try {
+        const response = await fetch(`/api/stories`);
+        const jsonResponse = await response.json();
+
+        if (!response.ok) {
+          setError(jsonResponse.message || "Failed to fetch reviews");
+        } else {
+          // Check if `body` exists and is an array
+          if (Array.isArray(jsonResponse.body)) {
+            console.log(`All reviews: ${JSON.stringify(jsonResponse.body)}`);
+            setFetchStories(jsonResponse.body);
+          } else {
+            setError("Unexpected response format");
+          }
+        }
+      } catch (fetchError) {
+        console.error(fetchError);
+        setError("An error occurred while fetching reviews");
+      }
+    };
+
+    fetchAllReviews();
     fetchSectionData();
   }, []);
 
@@ -106,13 +132,9 @@ const Home = () => {
       {/* Top Travel Stories */}
 
       <div className="flex mt-7 flex-wrap justify-center gap-4">
-        <PostCard />
-        <PostCard />
-        <PostCard />
-        <PostCard />
-        <PostCard />
-        <PostCard />
-        <PostCard />
+        {fetchStories.map((story) => {
+          return <PostCard key={story._id} {...story} />;
+        })}
       </div>
     </main>
   );

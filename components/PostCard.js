@@ -1,6 +1,48 @@
+import { useRouter } from "next/navigation";
 import React from "react";
 
-const PostCard = () => {
+const PostCard = ({ title, review, date, location, imageUrl }) => {
+  const router = useRouter();
+  const parseDate = (date) => {
+    try {
+      const { day, month, year } = JSON.parse(date);
+
+      if (
+        typeof day !== "number" ||
+        typeof month !== "number" ||
+        typeof year !== "number"
+      ) {
+        throw new Error("Invalid date format");
+      }
+
+      const monthNames = [
+        null, // Placeholder for 0, since months are 1-indexed
+        "Jan",
+        "Feb",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "Aug",
+        "Sep",
+        "Oct",
+        "Nov",
+        "Dec",
+      ];
+
+      const monthName = monthNames[month];
+      if (!monthName) {
+        throw new Error("Invalid month value");
+      }
+
+      return `${monthName}/${day}/${year}`;
+    } catch (error) {
+      console.error("Invalid input:", error.message);
+      return "";
+    }
+  };
+
   return (
     <div
       id="MainPagePostCard"
@@ -9,22 +51,23 @@ const PostCard = () => {
       <div className="relative w-[100%] h-[350px] rounded-2xl overflow-hidden">
         <img
           className="absolute inset-0 object-cover w-full h-full"
-          src="/India.jpg"
+          src={imageUrl}
           alt="pic uploaded by user"
         />
       </div>
       <span className="flex text-xs justify-between px-4 py-2">
-        <p>Mumbai, India</p>
-        <p>Feb 27, 2023</p>
+        <p>{location}</p>
+        <p>{parseDate(date)}</p>
       </span>
       <span className="px-4 py-2">
-        <h3 className="text-xl font-bold">A Wonderful Journey to India</h3>
-        <p className="mt-2 text-sm ">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut
-          recusandae ullam a sint unde velit harum neque dicta libero fugit?
-          Iure, laboriosam illo.
-        </p>
-        <button className="flex items-center mt-4 px-3 py-1  text-blue-500 rounded-md">
+        <h3 className="text-xl font-bold">{title}</h3>
+        <p className="mt-2 text-sm ">{review}</p>
+        <button
+          onClick={() => {
+            router.push("/details");
+          }}
+          className="flex items-center mt-4 px-3 py-1  text-blue-500 rounded-md"
+        >
           Read full Post
           <img
             className="ml-2"

@@ -1,7 +1,6 @@
 import CountrySpecialCard from "@/components/CountrySpecialCard";
-import React from "react";
 
-const page = () => {
+const Page = () => {
   return (
     <div className="overflow-hidden">
       {/* Background Image Section */}
@@ -12,7 +11,7 @@ const page = () => {
           alt="Background"
         />
         <div className="absolute inset-0 flex items-center justify-center text-white text-center p-4">
-          <div className="">
+          <div>
             <h1 className="md:text-[20vw] text-[70px] font-semibold px-10">
               Crotia
             </h1>
@@ -50,7 +49,6 @@ const page = () => {
       {/* Carousel of Hardcoded Cards */}
       <div className="flex pt-10 flex-wrap gap-2 justify-center">
         <div className="carousel carousel-center rounded-box max-w-full bg-white space-x-4 p-4">
-          {/* Card 1 */}
           <div className="carousel-item">
             <div className="mb-3 w-[370px] h-[450px] rounded-t-2xl flex flex-col">
               <div className="relative w-[100%] h-[350px] rounded-2xl overflow-hidden">
@@ -255,4 +253,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

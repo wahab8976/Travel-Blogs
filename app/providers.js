@@ -1,5 +1,4 @@
 "use client";
-
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import Sidebar from "@/components/Sidebar";
@@ -9,7 +8,6 @@ import { SidebarProvider } from "@/context/SidebarContext"; // Import the Sideba
 
 export function Providers({ children, session, ...pageProps }) {
   const pathName = usePathname(); // Use pathname Hook to check the current path
-
   return (
     <SidebarProvider>
       <NextUIProvider>
