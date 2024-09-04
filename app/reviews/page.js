@@ -13,7 +13,6 @@ const Review = () => {
   // Function to handle form submission
   const handleFormSubmission = async (formData) => {
     console.log("Form Data Submitted:", formData);
-
     try {
       const { date, review, title, location, imageUrl } = formData;
       const queryParams = {

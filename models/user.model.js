@@ -14,7 +14,6 @@ const userSchema = new mongoose.Schema({
     required: [true, "Password is required"],
   },
 });
-// Check if the model is already defined to prevent OverwriteModelError
-const User = mongoose.models.User || mongoose.model("User", userSchema);
 
+const User = mongoose.models.User || mongoose.model("User", userSchema);
 export default User;

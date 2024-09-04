@@ -1,9 +1,8 @@
 // Import the Review model (not the schema)
-import Review from "@/models/reviews.model";
+import reviewSchema from "@/models/reviews.model";
 import { NextResponse } from "next/server";
 import dbConnect from "@/DataBase/connectDB";
 import { getUserFromToken } from "@/utils/getUserFromToken";
-import userSchema from "@/models/user.model";
 
 export const POST = async (req) => {
   // Connect to the database
@@ -43,12 +42,11 @@ export const POST = async (req) => {
     }
     console.log(`Got Token: ${userID}`);
 
-    const newReview = new Review({
+    const newReview = new reviewSchema({
       title,
       review,
       location,
       date: JSON.stringify(userDate),
-      userID,
       user: userID,
       imageUrl,
     });
@@ -70,13 +68,13 @@ export const POST = async (req) => {
 };
 
 export const GET = async (req) => {
+  await dbConnect();
   try {
     // Fetch all reviews and populate the 'user' field with the user's data
-    const reviews = await Review.find({}).populate("user", "userName"); // Populate with the desired fields
+    const reviews = await reviewSchema.find({});
 
     console.log("Reviews to Send are:", reviews);
 
-    // Return the reviews and their corresponding user data to the frontend
     return NextResponse.json(
       {
         success: true,

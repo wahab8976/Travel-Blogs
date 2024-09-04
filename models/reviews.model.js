@@ -1,6 +1,5 @@
 import mongoose from "mongoose";
 
-// Review Schema
 const reviewSchema = new mongoose.Schema(
   {
     title: {
@@ -16,7 +15,7 @@ const reviewSchema = new mongoose.Schema(
       required: [true, "Travel location is a required field"],
     },
     date: {
-      type: String,
+      type: String, // Consider changing to Date type if needed
       required: [true, "Date is required"],
     },
     imageUrl: {
@@ -32,7 +31,5 @@ const reviewSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-// Check if the model is already defined to prevent OverwriteModelError
 const Review = mongoose.models.Review || mongoose.model("Review", reviewSchema);
-
 export default Review;

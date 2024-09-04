@@ -13,7 +13,7 @@ export const POST = async (request) => {
 
     // Convert email to lowercase
     const normalizedEmail = email.toLowerCase();
-
+    console.log(`Normalized Email is ${normalizedEmail}`);
     // Find the user by email
     const existingUser = await userSchema.findOne({ email: normalizedEmail });
 
@@ -24,7 +24,7 @@ export const POST = async (request) => {
           message: "No account exists with this email",
         },
         {
-          status: 400,
+          status: 401,
         }
       );
     }
