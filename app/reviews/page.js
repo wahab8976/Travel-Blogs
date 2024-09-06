@@ -8,6 +8,7 @@ const Review = () => {
   const [enableReview, setEnableReview] = useState(false); // State to toggle the review form
   const [error, setError] = useState(null); // State to handle errors
   const [fetchReviews, setFetchReviews] = useState([]); // State to store fetched reviews
+  const [suggestions, setSuggestions] = useState([]);
   const router = useRouter();
 
   // Function to handle form submission

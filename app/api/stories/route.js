@@ -6,7 +6,7 @@ export const GET = async (req) => {
   await dbConnect();
   try {
     // Fetch all reviews and populate the 'user' field with the user's data
-    const reviews = await Review.find({}).populate("user", "userName"); // Populate with the desired fields
+    const reviews = await Review.find({}); // Populate with the desired fields
     console.log(`Stories ${reviews}`);
     console.log(`Review before Reading Time ${reviews}`);
     // console.log("Reviews to Send are:", reviews);
