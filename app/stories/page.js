@@ -11,12 +11,24 @@ const Home = () => {
   const [fetchStories, setFetchStories] = useState([]);
   const router = useRouter();
 
-  const handleDetailRedirect = (title, location, review) => {
-    console.log("Redirecting to /details with:", { title, location, review });
+  const handleDetailRedirect = (title, location, review, imageUrl) => {
+    console.log("Redirecting to /details with:", {
+      title,
+      location,
+      review,
+      imageUrl,
+    });
 
-    // Verify pathname is correct and not undefined
+    // Encode the image URL
+    const encodedImageUrl = encodeURIComponent(imageUrl);
+
+    // Push the encoded URL to the next page
     router.push(
-      `/details/?title=${title}&location=${location}&review=${review}`
+      `/details/?title=${encodeURIComponent(
+        title
+      )}&location=${encodeURIComponent(location)}&review=${encodeURIComponent(
+        review
+      )}&imageUrl=${encodedImageUrl}`
     );
   };
 

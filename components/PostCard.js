@@ -69,7 +69,9 @@ const PostCard = ({
         <h3 className="text-xl font-bold">{title}</h3>
         <p className="mt-2 text-sm ">{review}</p>
         <button
-          onClick={() => handleDetailRedirect(title, location, review)}
+          onClick={() =>
+            handleDetailRedirect(title, location, review, imageUrl)
+          }
           className="flex items-center mt-4 px-3 py-1  text-blue-500 rounded-md"
         >
           Read full Post
