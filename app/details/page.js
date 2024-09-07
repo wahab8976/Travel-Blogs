@@ -1,6 +1,33 @@
+"use client";
 import CountrySpecialCard from "@/components/CountrySpecialCard";
+import { useSearchParams } from "next/navigation";
 
 const Page = () => {
+  const searchParams = useSearchParams();
+
+  const splitLocation = (location) => {
+    if (!location) return { city: null, state: null, country: null };
+
+    const parts = location.split(",").map((part) => part.trim());
+
+    if (parts.length === 3) {
+      // City, State, Country
+      return { city: parts[0], state: parts[1], country: parts[2] };
+    } else if (parts.length === 2) {
+      // City, Country
+      return { city: parts[0], state: null, country: parts[1] };
+    } else if (parts.length === 1) {
+      // Country only
+      return { city: null, state: null, country: parts[0] };
+    }
+
+    return { city: null, state: null, country: null };
+  };
+
+  const location = searchParams.get("location");
+  const { city, state, country } = splitLocation(location);
+  const review = searchParams.get("review");
+
   return (
     <div className="overflow-hidden">
       {/* Background Image Section */}
@@ -13,7 +40,7 @@ const Page = () => {
         <div className="absolute inset-0 flex items-center justify-center text-white text-center p-4">
           <div>
             <h1 className="md:text-[20vw] text-[70px] font-semibold px-10">
-              Crotia
+              {city}
             </h1>
           </div>
         </div>
@@ -21,17 +48,12 @@ const Page = () => {
 
       {/* Country Information Section */}
       <div className="flex flex-col mt-10 items-center">
-        <h2 className="text-6xl text-blue-600 font-bold font-sans">Crotia</h2>
-        <h3 className="text-xl py-2 text-gray-500">Europe</h3>
+        <h2 className="text-6xl text-blue-600 font-bold font-sans">
+          {country}
+        </h2>
+        <h3 className="text-xl py-2 text-gray-500">{location}</h3>
         <article className="text-center mt-5 md:px-32 px-3 h-auto">
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolore
-          dolorum, nostrum provident saepe minima quod natus quae modi
-          recusandae veritatis. Cum dolores dolorum nostrum expedita impedit aut
-          fugiat obcaecati saepe illum. Nam facilis expedita accusantium. Fugiat
-          accusamus, fuga ratione aliquid autem voluptas reiciendis atque
-          veritatis! Lorem ipsum dolor sit amet consectetur adipisicing elit.
-          Earum, quod enim laboriosam ipsam fuga saepe, illo corrupti dolores
-          voluptas nostrum repellendus. Totam, sunt.
+          {review}
         </article>
       </div>
 
@@ -64,7 +86,7 @@ const Page = () => {
               </span>
               <span className="px-4 py-2">
                 <h3 className="text-xl font-bold">
-                  A Wonderful Journey to India
+                  A Wonderful Travel Experience
                 </h3>
                 <p className="mt-2 text-sm">
                   Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut

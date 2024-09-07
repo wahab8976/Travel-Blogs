@@ -1,8 +1,14 @@
-import { useRouter } from "next/navigation";
 import React from "react";
+import { useRouter } from "next/navigation";
 
-const PostCard = ({ title, review, date, location, imageUrl }) => {
-  const router = useRouter();
+const PostCard = ({
+  title,
+  review,
+  date,
+  location,
+  imageUrl,
+  handleDetailRedirect,
+}) => {
   const parseDate = (date) => {
     try {
       const { day, month, year } = JSON.parse(date);
@@ -63,9 +69,7 @@ const PostCard = ({ title, review, date, location, imageUrl }) => {
         <h3 className="text-xl font-bold">{title}</h3>
         <p className="mt-2 text-sm ">{review}</p>
         <button
-          onClick={() => {
-            router.push("/details");
-          }}
+          onClick={() => handleDetailRedirect(title, location, review)}
           className="flex items-center mt-4 px-3 py-1  text-blue-500 rounded-md"
         >
           Read full Post
