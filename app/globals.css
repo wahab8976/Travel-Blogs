@@ -65,3 +65,12 @@
   width: 30px; /* Increased width when active */
   /* Change background color when active */
 }
+
+.ellipsis {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal; /* Allows the text to wrap */
+  -webkit-line-clamp: 3; /* Number of lines to show before truncation */
+}

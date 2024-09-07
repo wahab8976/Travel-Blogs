@@ -32,6 +32,7 @@
     "react": "^18",
     "react-dom": "^18",
     "react-hook-form": "^7.52.2",
+    "reading-time-estimator": "^1.11.0",
     "resend": "^4.0.0",
     "styled-components": "^6.1.12",
     "swiper": "^11.1.9",

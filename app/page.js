@@ -167,15 +167,11 @@ const Home = () => {
           </button>
         </span>
       </div>
-      <div className="flex mt-7 flex-wrap justify-center gap-4">
+
+      {/* Pending ........... TODO */}
+      {/* <div className="flex mt-7 flex-wrap justify-center gap-4">
         <PostCard />
-        <PostCard />
-        <PostCard />
-        <PostCard />
-        <PostCard />
-        <PostCard />
-        <PostCard />
-      </div>
+      </div> */}
     </main>
   );
 };

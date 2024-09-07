@@ -58,6 +58,7 @@ const Home = () => {
         } else {
           if (Array.isArray(jsonResponse.body)) {
             setFetchStories(jsonResponse.body);
+            console.log(`API response is ${JSON.stringify(jsonResponse.body)}`);
           } else {
             setError("Unexpected response format");
           }

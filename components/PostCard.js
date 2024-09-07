@@ -8,6 +8,7 @@ const PostCard = ({
   location,
   imageUrl,
   handleDetailRedirect,
+  readingTime,
 }) => {
   const parseDate = (date) => {
     try {
@@ -67,22 +68,25 @@ const PostCard = ({
       </span>
       <span className="px-4 py-2">
         <h3 className="text-xl font-bold">{title}</h3>
-        <p className="mt-2 text-sm ">{review}</p>
-        <button
-          onClick={() =>
-            handleDetailRedirect(title, location, review, imageUrl)
-          }
-          className="flex items-center mt-4 px-3 py-1  text-blue-500 rounded-md"
-        >
-          Read full Post
-          <img
-            className="ml-2"
-            width={20}
-            height={20}
-            src="/external-link.png"
-            alt="External link"
-          />
-        </button>
+        <p className="mt-2 text-sm ellipsis">{review}</p>
+        <div className="flex  justify-between items-center pt-4">
+          <button
+            onClick={() =>
+              handleDetailRedirect(title, location, review, imageUrl)
+            }
+            className="flex gap-2 items-center mt-4 px-3 py-1 text-blue-500 rounded-md justify-between"
+          >
+            Read full Post
+            <img
+              className="ml-2"
+              width={20}
+              height={20}
+              src="/external-link.png"
+              alt="External link"
+            />
+          </button>
+          <span className="pt-[20px]">{readingTime}</span>
+        </div>
       </span>
     </div>
   );

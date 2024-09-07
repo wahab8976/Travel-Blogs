@@ -32,7 +32,7 @@ const Page = () => {
       const otpParams = { userName, emailAddress };
 
       // Send data to server to get OTP
-      const response = await fetch(`/api/send`, {
+      const response = await fetch(`/api/auth/send`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(otpParams),

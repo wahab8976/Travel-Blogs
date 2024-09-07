@@ -44,7 +44,7 @@ const Page = () => {
         />
         <div className="absolute inset-0 flex items-center justify-center text-white text-center p-4">
           <div>
-            <h1 className="md:text-[20vw] text-[70px] font-semibold px-10">
+            <h1 className=" md:text-[20vw] text-[70px] font-semibold px-10">
               {city}
             </h1>
           </div>
@@ -53,7 +53,7 @@ const Page = () => {
 
       {/* Country Information Section */}
       <div className="flex flex-col mt-10 items-center">
-        <h2 className="text-6xl text-blue-600 font-bold font-sans">
+        <h2 className="mx-auto text-center text-6xl text-blue-600 font-bold font-sans">
           {country}
         </h2>
         <h3 className="text-xl py-2 text-gray-500">{location}</h3>

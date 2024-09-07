@@ -28,6 +28,7 @@ export const POST = async (request) => {
         }
       );
     }
+    console.log(`Existing User: ${JSON.stringify(existingUser)}`);
 
     // Verify the password
     const isValidPassword = await bcrypt.compare(
