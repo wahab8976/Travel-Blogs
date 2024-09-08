@@ -11,7 +11,11 @@ export function Providers({ children, session, ...pageProps }) {
   return (
     <SidebarProvider>
       <NextUIProvider>
-        {pathName === "/signup" || pathName === "/login" ? null : <Navbar />}
+        {pathName === "/signup" ||
+        pathName === "/login" ||
+        pathName === "/not-found" ? null : (
+          <Navbar />
+        )}
         <Sidebar />
         {children}
         <Footer />

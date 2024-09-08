@@ -1,10 +1,11 @@
 "use client";
 import CountrySpecialCard from "@/components/CountrySpecialCard";
-import { image } from "@nextui-org/react";
 import { useSearchParams } from "next/navigation";
-
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 const Page = () => {
   const searchParams = useSearchParams();
+  const router = useRouter();
 
   // Function to split location into city, state, and country
   const splitLocation = (location) => {
@@ -29,9 +30,15 @@ const Page = () => {
 
   // Fetch query parameters
   const location = searchParams.get("location");
-  const { city, state, country } = splitLocation(location);
   const review = decodeURIComponent(searchParams.get("review"));
   const imageUrl = searchParams.get("imageUrl");
+
+  // Check if location or any required parameter is missing
+  if (!location || !review || !imageUrl) {
+    router.push("/not-found");
+  }
+
+  const { city, state, country } = splitLocation(location);
 
   return (
     <div className="overflow-hidden">
@@ -44,7 +51,7 @@ const Page = () => {
         />
         <div className="absolute inset-0 flex items-center justify-center text-white text-center p-4">
           <div>
-            <h1 className=" md:text-[20vw] text-[70px] font-semibold px-10">
+            <h1 className="md:text-[20vw] text-[70px] font-semibold px-10">
               {city}
             </h1>
           </div>
