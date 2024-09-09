@@ -1,13 +1,40 @@
 "use client";
 import CountrySpecialCard from "@/components/CountrySpecialCard";
-import { useSearchParams } from "next/navigation";
-import { useRouter } from "next/navigation";
-import { useEffect } from "react";
-const Page = () => {
-  const searchParams = useSearchParams();
-  const router = useRouter();
+import { useRouter, useParams } from "next/navigation";
+import { useEffect, useState } from "react";
 
-  // Function to split location into city, state, and country
+const Page = () => {
+  const [blogDetails, setBlogDetails] = useState({});
+  const router = useRouter();
+  const { id } = useParams();
+
+  useEffect(() => {
+    const fetchDetailedBlog = async () => {
+      try {
+        console.log(`Sending blog request with id: ${id}`);
+        const response = await fetch(`/api/blog/details`, {
+          method: "POST",
+          body: JSON.stringify({ id }),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        console.log(data);
+        setBlogDetails(data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    id && fetchDetailedBlog();
+  }, [id, router]);
+
   const splitLocation = (location) => {
     if (!location) return { city: null, state: null, country: null };
 
@@ -28,17 +55,7 @@ const Page = () => {
     return { city: null, state: null, country: null };
   };
 
-  // Fetch query parameters
-  const location = searchParams.get("location");
-  const review = decodeURIComponent(searchParams.get("review"));
-  const imageUrl = searchParams.get("imageUrl");
-
-  // Check if location or any required parameter is missing
-  if (!location || !review || !imageUrl) {
-    router.push("/not-found");
-  }
-
-  const { city, state, country } = splitLocation(location);
+  const { city, state, country } = splitLocation(blogDetails.location || "");
 
   return (
     <div className="overflow-hidden">
@@ -46,13 +63,13 @@ const Page = () => {
       <div className="relative w-full h-[90vh] overflow-hidden">
         <img
           className="w-full h-full object-cover"
-          src={imageUrl}
+          src={blogDetails.imageUrl}
           alt="Background"
         />
         <div className="absolute inset-0 flex items-center justify-center text-white text-center p-4">
           <div>
             <h1 className="md:text-[20vw] text-[70px] font-semibold px-10">
-              {city}
+              {city || "City"}
             </h1>
           </div>
         </div>
@@ -61,11 +78,13 @@ const Page = () => {
       {/* Country Information Section */}
       <div className="flex flex-col mt-10 items-center">
         <h2 className="mx-auto text-center text-6xl text-blue-600 font-bold font-sans">
-          {country}
+          {country || "Country"}
         </h2>
-        <h3 className="text-xl py-2 text-gray-500">{location}</h3>
+        <h3 className="text-xl py-2 text-gray-500">
+          {state ? `${state}, ${country}` : country}
+        </h3>
         <article className="text-center mt-5 md:px-32 px-3 h-auto">
-          {review}
+          {blogDetails.review || "Review"}
         </article>
       </div>
 

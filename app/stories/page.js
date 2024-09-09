@@ -11,25 +11,22 @@ const Home = () => {
   const [fetchStories, setFetchStories] = useState([]);
   const router = useRouter();
 
-  const handleDetailRedirect = (title, location, review, imageUrl) => {
-    console.log("Redirecting to /details with:", {
-      title,
-      location,
-      review,
-      imageUrl,
-    });
+  const handleDetailRedirect = (_id) => {
+    console.log("Redirecting to /details with:", _id);
+
+    router.push(`/blog/details/${_id}`);
 
     // Encode the image URL
-    const encodedImageUrl = encodeURIComponent(imageUrl);
+    // const encodedImageUrl = encodeURIComponent(imageUrl);
 
-    // Push the encoded URL to the next page
-    router.push(
-      `/details/?title=${encodeURIComponent(
-        title
-      )}&location=${encodeURIComponent(location)}&review=${encodeURIComponent(
-        review
-      )}&imageUrl=${encodedImageUrl}`
-    );
+    // // Push the encoded URL to the next page
+    // router.push(
+    //   `/details/?title=${encodeURIComponent(
+    //     title
+    //   )}&location=${encodeURIComponent(location)}&review=${encodeURIComponent(
+    //     review
+    //   )}&imageUrl=${encodedImageUrl}`
+    // );
   };
 
   useEffect(() => {

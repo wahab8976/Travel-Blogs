@@ -7,12 +7,11 @@ export async function POST(Request) {
   const OTP = Math.floor(Math.random() * 10000)
     .toString()
     .padStart(4, "0");
-  const { userName, emailAddress } = await Request.json(); // Ensure you are parsing JSON correctly
-
+  const { userName, emailAddress } = await Request.json();
   try {
     const { data, error } = await resend.emails.send({
-      from: "delivered@resend.dev", // Ensure this is a valid email address
-      to: [emailAddress], // Ensure emailAddress is a string
+      from: "delivered@resend.dev",
+      to: [emailAddress],
       subject: "Complete Verification",
       react: EmailTemplate({ userName, OTP }),
     });

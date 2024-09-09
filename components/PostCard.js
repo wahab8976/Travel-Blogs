@@ -9,6 +9,7 @@ const PostCard = ({
   imageUrl,
   handleDetailRedirect,
   readingTime,
+  _id,
 }) => {
   const parseDate = (date) => {
     try {
@@ -71,9 +72,10 @@ const PostCard = ({
         <p className="mt-2 text-sm ellipsis">{review}</p>
         <div className="flex  justify-between items-center pt-4">
           <button
-            onClick={() =>
-              handleDetailRedirect(title, location, review, imageUrl)
-            }
+            // onClick={() =>
+            //   handleDetailRedirect(title, location, review, imageUrl)
+            // }
+            onClick={() => handleDetailRedirect(_id)}
             className="flex gap-2 items-center mt-4 px-3 py-1 text-blue-500 rounded-md justify-between"
           >
             Read full Post
