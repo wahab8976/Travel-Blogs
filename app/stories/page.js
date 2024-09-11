@@ -15,18 +15,6 @@ const Home = () => {
     console.log("Redirecting to /details with:", _id);
 
     router.push(`/blog/details/${_id}`);
-
-    // Encode the image URL
-    // const encodedImageUrl = encodeURIComponent(imageUrl);
-
-    // // Push the encoded URL to the next page
-    // router.push(
-    //   `/details/?title=${encodeURIComponent(
-    //     title
-    //   )}&location=${encodeURIComponent(location)}&review=${encodeURIComponent(
-    //     review
-    //   )}&imageUrl=${encodedImageUrl}`
-    // );
   };
 
   useEffect(() => {

@@ -5,13 +5,13 @@ import { useEffect, useState } from "react";
 
 const Page = () => {
   const [blogDetails, setBlogDetails] = useState({});
+  const [userBlogs, setUserBlogs] = useState([]);
   const router = useRouter();
   const { id } = useParams();
 
   useEffect(() => {
     const fetchDetailedBlog = async () => {
       try {
-        console.log(`Sending blog request with id: ${id}`);
         const response = await fetch(`/api/blog/details`, {
           method: "POST",
           body: JSON.stringify({ id }),
@@ -25,7 +25,7 @@ const Page = () => {
         }
 
         const data = await response.json();
-        console.log(data);
+        
         setBlogDetails(data);
       } catch (error) {
         console.error(error);
@@ -33,7 +33,38 @@ const Page = () => {
     };
 
     id && fetchDetailedBlog();
-  }, [id, router]);
+  }, [id]);
+
+  useEffect(() => {
+    const fetchStoriesByAuthor = async () => {
+      if (!blogDetails.user?._id) {
+        // If _id is not available, don't make the request
+        return;
+      }
+
+      try {
+        const response = await fetch(
+          `/api/blog/details?author=${blogDetails.user._id}`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        setUserBlogs(data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchStoriesByAuthor();
+  }, [blogDetails.user?._id]); // Only trigger when user._id changes
 
   const splitLocation = (location) => {
     if (!location) return { city: null, state: null, country: null };
@@ -87,11 +118,17 @@ const Page = () => {
           {blogDetails.review || "Review"}
         </article>
       </div>
-
+      <div className="flex mt-5 justify-end items-center px-10">
+        {blogDetails.user?.userName && (
+          <span className="hover:cursor-pointer">
+            Author: {blogDetails.user?.userName}
+          </span>
+        )}
+      </div>
       {/* Top Sights and Locations Section */}
       <div className="pt-10">
         <span className="text-blue-500 px-5 text-sm">
-          01 / Top Sights and Locations
+          01 / More stories from Author
         </span>
         <div className="flex flex-col items-start px-5 text-3xl pt-3 font-semibold">
           <span>Top Destinations for</span>
@@ -102,7 +139,13 @@ const Page = () => {
       {/* Carousel of Hardcoded Cards */}
       <div className="flex pt-10 flex-wrap gap-2 justify-center">
         <div className="carousel carousel-center rounded-box max-w-full bg-white space-x-4 p-4">
-          {/* Carousel items here... */}
+          {userBlogs.map((blog) => (
+            <CountrySpecialCard
+              key={blog._id}
+              imageUrl={blog.imageUrl}
+              location={blog.location}
+            />
+          ))}
         </div>
       </div>
 
