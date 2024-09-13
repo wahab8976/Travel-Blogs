@@ -12,8 +12,6 @@ const Home = () => {
   const router = useRouter();
 
   const handleDetailRedirect = (_id) => {
-    console.log("Redirecting to /details with:", _id);
-
     router.push(`/blog/details/${_id}`);
   };
 
@@ -43,7 +41,6 @@ const Home = () => {
         } else {
           if (Array.isArray(jsonResponse.body)) {
             setFetchStories(jsonResponse.body);
-            console.log(`API response is ${JSON.stringify(jsonResponse.body)}`);
           } else {
             setError("Unexpected response format");
           }

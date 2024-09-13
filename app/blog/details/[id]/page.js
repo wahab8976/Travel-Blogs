@@ -25,7 +25,7 @@ const Page = () => {
         }
 
         const data = await response.json();
-        
+
         setBlogDetails(data);
       } catch (error) {
         console.error(error);
@@ -88,6 +88,10 @@ const Page = () => {
 
   const { city, state, country } = splitLocation(blogDetails.location || "");
 
+  const handleCardClick = (id) => {
+    router.push(`/blog/details/${id}`);
+  };
+
   return (
     <div className="overflow-hidden">
       {/* Background Image Section */}
@@ -136,7 +140,7 @@ const Page = () => {
         </div>
       </div>
 
-      {/* Carousel of Hardcoded Cards */}
+      {/* Carousel of Country Special Cards */}
       <div className="flex pt-10 flex-wrap gap-2 justify-center">
         <div className="carousel carousel-center rounded-box max-w-full bg-white space-x-4 p-4">
           {userBlogs.map((blog) => (
@@ -144,13 +148,14 @@ const Page = () => {
               key={blog._id}
               imageUrl={blog.imageUrl}
               location={blog.location}
+              handleCardClick={() => router.push(`/blog/details/${blog._id}`)}
             />
           ))}
         </div>
       </div>
 
       {/* Other Fun Places Section */}
-      <div className="pt-10">
+      {/* <div className="pt-10">
         <span className="text-blue-500 px-5 text-sm">
           03 / Other Fun Places in Croatia
         </span>
@@ -158,19 +163,19 @@ const Page = () => {
           <span>Other Fun Places</span>
           <span>In Croatia</span>
         </div>
-      </div>
+      </div> */}
 
       {/* Additional CountrySpecialCard Items */}
-      <div className="flex pt-10 flex-wrap gap-2 justify-center">
+      {/* <div className="flex pt-10 flex-wrap gap-2 justify-center">
         <CountrySpecialCard />
         <CountrySpecialCard />
         <CountrySpecialCard />
-      </div>
-      <span className="flex justify-center mb-10">
+      </div> */}
+      {/* <span className="flex justify-center mb-10">
         <button className="rounded-3xl text-blue-500 bg-transparent py-1 px-3 border-blue-500 border-2">
           View all other Places
         </button>
-      </span>
+      </span> */}
     </div>
   );
 };

@@ -8,10 +8,6 @@ export const POST = async (request) => {
   const jsonData = await request.json();
   const { id } = jsonData;
 
-  // const { author } = await request.query;
-
-  // console.log(`Author is ${author}`);
-
   console.log(`ID is ${id}`);
   if (!id) {
     return NextResponse.json(
@@ -23,7 +19,7 @@ export const POST = async (request) => {
   try {
     const _id = id;
     const blog = await blogSchema.findOne({ _id }).populate("user", "userName");
-    if (!blog) console.log(`Blog not found~`);
+    if (!blog) console.log(`Blog not found`);
 
     console.log(`Found a blod ${JSON.stringify(blog)}`);
     return NextResponse.json(blog, { status: 200 });
@@ -39,8 +35,6 @@ export const GET = async (request) => {
   try {
     const url = new URL(request.url); // Create a URL object from the request URL
     const authorId = url.searchParams.get("author"); // Extract the 'author' query parameter
-
-    console.log(`Author ID is ${authorId}`);
 
     if (!authorId) {
       return NextResponse.json(
