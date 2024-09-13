@@ -3,13 +3,17 @@ import React, { useRef, useState, useEffect } from "react";
 import MainPageSection from "@/components/MainPageSection";
 import ClientCarousel from "@/components/ClientMainCarousel";
 import PostCard from "@/components/PostCard";
+import { useRouter } from "next/navigation";
 import CarouselButton from "@/components/CarouselButton";
 
 const Home = () => {
   const [sectionData, setSectionData] = useState([]);
+  const [fetchStories, setFetchStories] = useState([]);
+  const [error, setError] = useState(null);
   const carouselRef = useRef(null);
   const topLocationsCarouselRef = useRef(null); // Ref for the second carousel
 
+  const router = useRouter();
   useEffect(() => {
     // Simulate data fetching with sample data
     const fetchSectionData = async () => {
@@ -25,6 +29,26 @@ const Home = () => {
         console.error("Failed to fetch section data", error);
       }
     };
+    const fetchAllReviews = async () => {
+      try {
+        const response = await fetch(`/api/stories`);
+        const jsonResponse = await response.json();
+
+        if (!response.ok) {
+          setError(jsonResponse.message || "Failed to fetch reviews");
+        } else {
+          if (Array.isArray(jsonResponse.body)) {
+            setFetchStories(jsonResponse.body);
+          } else {
+            setError("Unexpected response format");
+          }
+        }
+      } catch (fetchError) {
+        setError("An error occurred while fetching reviews");
+      }
+    };
+
+    fetchAllReviews();
     fetchSectionData();
   }, []);
 
@@ -158,20 +182,55 @@ const Home = () => {
       {/* <CarouselButton scrollRef={topLocationsCarouselRef} /> */}
 
       {/* Top Travel Stories */}
-      <div className="mt-10">
+      {/* <div className="mt-10">
         <h3 className="px-3 text-xl font-bold">Top Travel Stories</h3>
         <span className="flex mx-3 flex-col items-start sm:flex-row sm:items-center justify-between">
           <p>Discover our top travel stories from our active users</p>
-          <button className="mt-3 sm:mt-0 rounded-3xl text-blue-500 bg-transparent py-1 px-3 border-blue-500 border-2">
+          <button
+            onClick={() => router.push("/stories")}
+            className="mt-3 sm:mt-0 rounded-3xl text-blue-500 bg-transparent py-1 px-3 border-blue-500 border-2"
+          >
             View all Stories
           </button>
         </span>
-      </div>
+      </div> */}
 
       {/* Pending ........... TODO */}
       {/* <div className="flex mt-7 flex-wrap justify-center gap-4">
         <PostCard />
       </div> */}
+      <div className="flex md:mt-10 justify-between px-2">
+        <div className="pt-2">
+          <h3 className="px-3 text-xl font-bold">Top Travel Stories</h3>
+          <span className="flex mx-3 justify-between">
+            <p>Discover our top travel stories from our active users</p>
+          </span>
+        </div>
+        <CarouselButton scrollRef={topLocationsCarouselRef} />
+      </div>
+
+      <div
+        ref={topLocationsCarouselRef} // Use ref for the second carousel
+        className="carousel mt-5 carousel-center bg-transparent rounded-box max-w-screen overflow-x-hidden p-4"
+      >
+        <div className="flex space-x-4">
+          {fetchStories.map((item, index) => (
+            <div
+              className="carousel-item flex flex-col min-h-[500px] max-w-[300px]"
+              key={index}
+            >
+              <img
+                src={item.imageUrl}
+                className="rounded-box h-[70%] object-cover" // Apply object-cover here
+                alt={`Carousel image ${index + 1}`}
+              />
+              <span className="px-5 text-lg font-semibold text-black">
+                {item.location}
+              </span>
+            </div>
+          ))}
+        </div>
+      </div>
     </main>
   );
 };
