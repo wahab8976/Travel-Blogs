@@ -115,14 +115,20 @@ const Home = () => {
         </div>
       </span>
 
-      <div className="pt-5">
-        <h3 className="px-3 text-xl font-bold">Plan Your Best Trip Ever</h3>
-        <span className="flex sm:items-center sm:flex-row items-start flex-col mx-3 justify-between">
-          <p>Making the most of your travel experience in 2023</p>
+      <div className="pt-5 mx-2 flex justify-between">
+        <div className="flex flex-col">
+          <h3 className="px-3 text-xl font-bold">Plan Your Best Trip Ever</h3>
+          <span className="flex sm:items-center sm:flex-row items-start flex-col mx-3 justify-between">
+            <p>Making the most of your travel experience in 2023</p>
+          </span>
+        </div>
+
+        <div className="flex flex-col gap-2 ">
           <button className="sm:mt-0 mt-3 items-center rounded-3xl text-blue-500 bg-transparent py-1 px-3 border-blue-500 border-2">
             View all Destinations
           </button>
-        </span>
+          <CarouselButton scrollRef={carouselRef} />
+        </div>
       </div>
 
       {/* Main Carousel of Landing page */}
@@ -143,7 +149,7 @@ const Home = () => {
           </div>
         ))}
       </div>
-      <CarouselButton scrollRef={carouselRef} />
+      {/* <CarouselButton scrollRef={carouselRef} /> */}
 
       {/* Top locations Carousel */}
       <div className="flex md:mt-10 justify-between px-2">
@@ -153,7 +159,9 @@ const Home = () => {
             <p>Here are some of the most visited places in 2023</p>
           </span>
         </div>
-        <CarouselButton scrollRef={topLocationsCarouselRef} />
+        <div className="mr-[50px]">
+          <CarouselButton scrollRef={topLocationsCarouselRef} />
+        </div>
       </div>
 
       <div
@@ -199,7 +207,7 @@ const Home = () => {
       {/* <div className="flex mt-7 flex-wrap justify-center gap-4">
         <PostCard />
       </div> */}
-      <div className="flex md:mt-10 justify-between px-2">
+      {/* <div className="flex md:mt-10 justify-between px-2">
         <div className="pt-2">
           <h3 className="px-3 text-xl font-bold">Top Travel Stories</h3>
           <span className="flex mx-3 justify-between">
@@ -230,7 +238,7 @@ const Home = () => {
             </div>
           ))}
         </div>
-      </div>
+      </div> */}
     </main>
   );
 };
