@@ -50,7 +50,7 @@ const Review = ({ review, title, location, imageUrl }) => {
   };
 
   return (
-    <div className="flex md:flex-row flex-col justify-center mb-10 gap-3">
+    <div className=" flex md:flex-row flex-col justify-center mb-10 gap-3">
       <div className="md:w-[35vw] w-[80vw] h-[320px] rounded-2xl">
         <img
           className="w-full h-full object-cover rounded-xl"

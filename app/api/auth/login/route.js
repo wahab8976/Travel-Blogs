@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import bcrypt from "bcrypt";
-import dbConnect from "@/DataBase/connectDB"; // Adjust the import path accordingly
-import userSchema from "@/models/user.model"; // Adjust the import path accordingly
+import dbConnect from "@/DataBase/connectDB";
+import userSchema from "@/models/user.model";
 import jwt from "jsonwebtoken";
 
 export const POST = async (request) => {
@@ -29,7 +29,6 @@ export const POST = async (request) => {
       );
     }
     console.log(`Existing User: ${JSON.stringify(existingUser)}`);
-
     // Verify the password
     const isValidPassword = await bcrypt.compare(
       password,

@@ -2,7 +2,6 @@
 import React, { useRef, useState, useEffect } from "react";
 import MainPageSection from "@/components/MainPageSection";
 import ClientCarousel from "@/components/ClientMainCarousel";
-import PostCard from "@/components/PostCard";
 import { useRouter } from "next/navigation";
 import CarouselButton from "@/components/CarouselButton";
 
@@ -119,7 +118,7 @@ const Home = () => {
         <div className="flex flex-col">
           <h3 className="px-3 text-xl font-bold">Plan Your Best Trip Ever</h3>
           <span className="flex sm:items-center sm:flex-row items-start flex-col mx-3 justify-between">
-            <p>Making the most of your travel experience in 2023</p>
+            <p>Making the most of your travel experience in 2024</p>
           </span>
         </div>
 
@@ -166,7 +165,7 @@ const Home = () => {
 
       <div
         ref={topLocationsCarouselRef} // Use ref for the second carousel
-        className="carousel mt-5 carousel-center bg-transparent rounded-box max-w-screen overflow-x-hidden p-4"
+        className="carousel mt-5 carousel-center bg-transparent rounded-box max-w-screen  p-4"
       >
         <div className="flex space-x-4">
           {carouselItems.map((item, index) => (
@@ -179,7 +178,7 @@ const Home = () => {
                 className="rounded-box"
                 alt={`Carousel image ${index + 1}`}
               />
-              <p className="px-5 pt-2">City, Country</p>
+              <p className="px-5 pt-2">City</p>
               <span className="px-5 text-lg font-semibold text-black">
                 {item.country}
               </span>

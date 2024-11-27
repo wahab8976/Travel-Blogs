@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 const Page = () => {
   const [blogDetails, setBlogDetails] = useState({});
   const [userBlogs, setUserBlogs] = useState([]);
+  const [currentBlog, setCurrentBlog] = useState(null);
   const router = useRouter();
   const { id } = useParams();
 
@@ -104,7 +105,7 @@ const Page = () => {
         <div className="absolute inset-0 flex items-center justify-center text-white text-center p-4">
           <div>
             <h1 className="md:text-[20vw] text-[70px] font-semibold px-10">
-              {city || "City"}
+              {city}
             </h1>
           </div>
         </div>
@@ -130,27 +131,32 @@ const Page = () => {
         )}
       </div>
       {/* Top Sights and Locations Section */}
-      <div className="pt-10">
-        <span className="text-blue-500 px-5 text-sm">
-          01 / More stories from Author
-        </span>
-        <div className="flex flex-col items-start px-5 text-3xl pt-3 font-semibold">
-          <span>Top Destinations for</span>
-          <span>Your Travel Plans</span>
+
+      {userBlogs.length > 2 && (
+        <div className="pt-10">
+          <span className="text-blue-500 px-5 text-sm">
+            More stories from Author
+          </span>
+          <div className="flex flex-col items-start px-5 text-3xl pt-3 font-semibold">
+            <span>Top Destinations for</span>
+            <span>Your Travel Plans</span>
+          </div>
         </div>
-      </div>
+      )}
 
       {/* Carousel of Country Special Cards */}
       <div className="flex pt-10 flex-wrap gap-2 justify-center">
         <div className="carousel carousel-center rounded-box max-w-full bg-white space-x-4 p-4">
-          {userBlogs.map((blog) => (
-            <CountrySpecialCard
-              key={blog._id}
-              imageUrl={blog.imageUrl}
-              location={blog.location}
-              handleCardClick={() => router.push(`/blog/details/${blog._id}`)}
-            />
-          ))}
+          {userBlogs
+            .filter((blog) => blog._id !== blogDetails._id) // Exclude the current blog
+            .map((blog) => (
+              <CountrySpecialCard
+                key={blog._id}
+                imageUrl={blog.imageUrl}
+                location={blog.location}
+                handleCardClick={() => router.push(`/blog/details/${blog._id}`)}
+              />
+            ))}
         </div>
       </div>
 

@@ -5,7 +5,7 @@ const CountrySpecialCard = ({ imageUrl, location, handleCardClick }) => {
     <div onClick={handleCardClick}>
       {" "}
       {/* Trigger the passed function on click */}
-      <div className="mb-5 w-[280px] h-[280px] rounded-t-xl mt-5">
+      <div className="hover:cursor-pointer mb-5 w-[280px] h-[280px] rounded-t-xl mt-5">
         <div className="w-full flex flex-col items-start h-[80%] rounded-t-xl">
           <img
             className="object-cover w-full h-full rounded-xl"
